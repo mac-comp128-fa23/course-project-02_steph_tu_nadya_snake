@@ -1,5 +1,3 @@
-import java.util.Iterator;
-
 public class Board {
     private Cell[][] cells;
     final int ROW = 20;
@@ -24,8 +22,8 @@ public class Board {
         endGame = false;
     }
 
-    public Cell[][] getCells() {
-        return this.cells;
+    public int getScore() {
+        return this.score;
     }
 
     public void eatFood() {
@@ -35,9 +33,20 @@ public class Board {
     }
 
     public void hit() {
-        Cell current = snake.getHead();
-        //while ()
-        endGame = true;
+        Cell head = snake.getHead();
+        Cell current = snake.getHead().getNext();
+        while (current != null) {
+            if (head.getCol() == current.getCol() && head.getRow() == current.getRow()) {
+                endGame = true;
+            }
+            current = current.getNext();
+        }
+        if (head.getCol() > 20 || head.getRow() > 20) {
+            endGame = true;
+        }
+        if (head.getCol() < 0 || head.getRow() < 0) {
+            endGame = true;
+        }
     }
 
     public void generateFood(){
