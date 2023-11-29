@@ -2,9 +2,14 @@ import edu.macalester.graphics.CanvasWindow;
 
 public class Game {
     private CanvasWindow window;
+    private Snake snake;
+    private Food food;
+    private Cell cell;
+    private Board board;
 
     public Game() {
         window = new CanvasWindow("Snake", 600, 600);
+        board = new Board();
     }
 
     public void generateBackground() {
