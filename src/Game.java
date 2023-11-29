@@ -9,7 +9,6 @@ public class Game {
 
     public Game() {
         window = new CanvasWindow("Snake", 600, 600);
-        board = new Board();
     }
 
     public void generateBackground() {
