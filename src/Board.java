@@ -16,7 +16,7 @@ public class Board {
             }
         }
 
-        Cell snakeHead = new Cell(10, 10);
+        Cell snakeHead = new Cell(0, 0);
         snake = new Snake(snakeHead);
         food = new Food();
         endGame = false;

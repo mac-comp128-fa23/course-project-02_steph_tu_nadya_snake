@@ -30,9 +30,8 @@ public class Food extends Cell {
             //color is blueish
             color = new Color(158, 231, 245);
         }
-
     }
-    
+
     public Color getColor() {
         return color;
     }
