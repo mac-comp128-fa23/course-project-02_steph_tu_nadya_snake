@@ -1,19 +1,38 @@
 import java.util.LinkedList;
 
-import edu.macalester.graphics.Point;
-
 public class Snake {
-    private LinkedList<Point> snakeBody = new LinkedList<>();
-    private Point tail;
-    private Point head;
-    private int intialLength = 1;
+    private LinkedList<Cell> snakeBody = new LinkedList<>();
+    private Cell head;
 
 
-    public Snake(Point pos) {
+    public Snake(Cell pos) {
         this.head = pos;
-        this.tail = pos;
         this.snakeBody.push(this.head);
-
     }
+
+    
+    public void addToTail(Cell newTail){
+        this.snakeBody.push(newTail);
+    }
+   
+
+    public void removeFromTail(){
+        if (this.snakeBody.size() > 1) {
+            this.snakeBody.pop();
+        }
+    }
+
+    public int getTailLength(){
+        return this.snakeBody.size() - 1;
+    }
+
+    public LinkedList<Cell> getSnakeBody() {
+        return this.snakeBody;
+    }
+
+    public Cell getHead() {
+        return this.head;
+    }
+
 
 }

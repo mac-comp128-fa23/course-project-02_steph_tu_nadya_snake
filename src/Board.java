@@ -6,17 +6,19 @@ public class Board {
     private Food food;
 
     public Board() {
-        cells = new Cell[ROW][COL];
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                cells[i][j] = new Cell(i, j);
-                cells[i][j].setType("empty");
+        this.cells = new Cell[this.ROW][this.COL];
+        for (int i = 0; i < this.cells.length; i++) {
+            for (int j = 0; j < this.cells[i].length; j++) {
+                this.cells[i][j] = new Cell(i, j);
+                this.cells[i][j].setType("empty");
             }
         }
 
-        snake = new Snake();
-        food = new Food();
+        this.snake = new Snake(this.cells[10][10]); //generates the snake in this cell
+        this.food = new Food();
     }
+
+    public void moveSnake() {}
 
     public Cell[][] getCells() {
         return this.cells;
@@ -24,14 +26,14 @@ public class Board {
 
     public void eatFood() {
         //if snake eats current food
-        generateFood();
+        this.generateFood();
     }
 
     public void generateFood(){
-        int row = (int) (Math.random() * ROW);
-        int col = (int) (Math.random() * COL);
-        if (cells[row][col].getType() != "snake" && cells[row][col].getType() != "food") {
-            cells[row][col].setType("food");
+        int row = (int) (Math.random() * this.ROW);
+        int col = (int) (Math.random() * this.COL);
+        if (this.cells[row][col].getType() != "snake" && this.cells[row][col].getType() != "food") {
+            this.cells[row][col].setType("food");
         }
     }
 }
