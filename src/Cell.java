@@ -1,3 +1,6 @@
+/**
+ * Represents a spot on the gameboard.
+ */
 public class Cell {
     private int row;
     private int col;
