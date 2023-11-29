@@ -3,8 +3,8 @@ import edu.macalester.graphics.CanvasWindow;
 public class Game {
     private CanvasWindow window;
 
-    public Game(int width, int height) {
-        window = new CanvasWindow("Snake", width, height);
+    public Game() {
+        window = new CanvasWindow("Snake", 600, 600);
     }
 
     public void generateBackground() {
@@ -12,6 +12,6 @@ public class Game {
     }
 
     public static void main(String[] args) {
-        new Game(600, 700);
+        new Game();
     }
 }
