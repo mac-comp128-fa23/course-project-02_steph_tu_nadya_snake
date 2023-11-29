@@ -7,18 +7,29 @@ public class Snake {
     public Snake(Cell pos) {
         this.head = pos;
         this.snakeBody.push(this.head);
+        this.head.setType("snake");
     }
 
     
     public void addToTail(Cell newTail){
         this.snakeBody.push(newTail);
+        // update
+        this.head.setNext(newTail);
+        newTail.setType("snake");
     }
    
 
     public void removeFromTail(){
-        if (this.snakeBody.size() > 1) {
+        if (this.snakeBody.size() >= 1) {
             this.snakeBody.pop();
+            Cell newTail = this.snakeBody.peek();
+            this.head.setNext(newTail);
+            this.head.setType("snake");
         }
+    }
+
+    public void move(){
+
     }
 
     public int getTailLength(){
@@ -36,5 +47,6 @@ public class Snake {
     public Cell getNext() {
         return this.head.getNext();
     }
+
 
 }
