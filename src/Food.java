@@ -1,27 +1,29 @@
 import java.awt.Color;
 import java.util.Random;
 
-public class Food {
+public class Food extends Cell {
+    private static int row;
+    private static int col;
     private Color color;
-    private int points;
+    private int colorCode;
     private Random random;
     
     //random score and/or size for food (random color to differentiate too)
     
     public Food() {
-        //points range from 1-5
-        points = random.nextInt(4) + 1;
+        super(row, col);
+        colorCode = random.nextInt(4) + 1;
 
-        if (points == 1) {
+        if (colorCode == 1) {
             //color is pinkish
             color = new Color(243, 168, 188);
-        } else if (points == 2) {
+        } else if (colorCode == 2) {
             //color is orangeish
             color = new Color(245, 173, 148);
-        } else if (points == 3) {
+        } else if (colorCode == 3) {
             //color is yellowish
             color = new Color(255, 241, 166);
-        } else if (points == 4) {
+        } else if (colorCode == 4) {
             //color is greenish
             color = new Color(180, 249, 165);
         } else {
@@ -30,11 +32,7 @@ public class Food {
         }
 
     }
-
-    public int getPoints() {
-        return points;
-    }
-
+    
     public Color getColor() {
         return color;
     }

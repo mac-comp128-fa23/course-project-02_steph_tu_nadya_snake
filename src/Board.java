@@ -27,24 +27,31 @@ public class Board {
     }
 
     public void eatFood() {
-        //if (snake.getHead().getCol() - food.) {
+        if (snake.getHead().getCol() == food.getCol() && snake.getHead().getRow() == food.getRow()) {
             score = score + 1;
             generateFood();
+        }
     }
 
-    public void hit() {
+    public void endGame() {
         Cell head = snake.getHead();
         Cell current = snake.getHead().getNext();
+        // hits itself
         while (current != null) {
             if (head.getCol() == current.getCol() && head.getRow() == current.getRow()) {
                 endGame = true;
             }
             current = current.getNext();
         }
+        // hit walls
         if (head.getCol() > 20 || head.getRow() > 20) {
             endGame = true;
         }
         if (head.getCol() < 0 || head.getRow() < 0) {
+            endGame = true;
+        }
+        // die
+        if (snake.getTailLength() == 0) {
             endGame = true;
         }
     }
