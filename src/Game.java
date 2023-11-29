@@ -2,6 +2,7 @@ import edu.macalester.graphics.CanvasWindow;
 
 public class Game {
     private CanvasWindow window;
+    private int score;
 
     public Game() {
         window = new CanvasWindow("Snake", 600, 600);
