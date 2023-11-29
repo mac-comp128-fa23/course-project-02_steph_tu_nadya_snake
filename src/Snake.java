@@ -4,7 +4,6 @@ public class Snake {
     private LinkedList<Cell> snakeBody = new LinkedList<>();
     private Cell head;
 
-
     public Snake(Cell pos) {
         this.head = pos;
         this.snakeBody.push(this.head);
@@ -34,5 +33,8 @@ public class Snake {
         return this.head;
     }
 
+    public Cell getNext() {
+        return this.head.getNext();
+    }
 
 }

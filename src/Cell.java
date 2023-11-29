@@ -2,6 +2,7 @@ public class Cell {
     private int row;
     private int col;
     private String type;
+    private Cell next;
 
     public Cell(int row, int col) {
         this.row = row;
@@ -22,5 +23,9 @@ public class Cell {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Cell getNext() {
+        return this.next;
     }
 }

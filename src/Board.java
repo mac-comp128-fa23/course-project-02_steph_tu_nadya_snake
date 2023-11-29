@@ -32,7 +32,6 @@ public class Board {
         //if (snake.getHead().getCol() - food.) {
             score = score + 1;
             generateFood();
-        }
     }
 
     public void hit() {
