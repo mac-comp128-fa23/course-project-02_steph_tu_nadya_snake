@@ -5,7 +5,7 @@ public class Game {
 
     public Game() {
         window = new CanvasWindow("Snake", 600, 600);
-        
+        window.add(new Board());
     }
 
     public void generateBackground() {

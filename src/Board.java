@@ -1,4 +1,8 @@
-public class Board {
+import java.awt.Paint;
+
+import edu.macalester.graphics.Rectangle;
+
+public class Board extends Rectangle {
     private Cell[][] cells;
     final int ROW = 20;
     final int COL = 20;
@@ -8,6 +12,7 @@ public class Board {
     public boolean endGame;
 
     public Board() {
+        super(0, 0, 450, 450);
         cells = new Cell[ROW][COL];
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
