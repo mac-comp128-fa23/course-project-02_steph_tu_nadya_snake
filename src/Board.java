@@ -20,7 +20,7 @@ public class Board {
         }
 
         Cell snakeHead = new Cell(this.ROW / 2, this.COL / 2); 
-        this.snake = new Snake(snakeHead, this.cells);
+        this.snake = new Snake(snakeHead, this.cells, 3);
         this.food = new Food();
         this.endGame = false;
         this.generateFood();
