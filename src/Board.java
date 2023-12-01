@@ -1,19 +1,16 @@
-import java.awt.Paint;
+import java.awt.Color;
 
-import edu.macalester.graphics.Rectangle;
-
-public class Board extends Rectangle {
-    private Cell[][] cells;
+public class Board {
     final int ROW = 20;
     final int COL = 20;
+    private Cell[][] cells;
     private Snake snake;
     private Food food;
     private int score;
     public boolean endGame;
 
     public Board() {
-        super(0, 0, 450, 450);
-        cells = new Cell[ROW][COL];
+        cells = new Cell[ROW][COL]; 
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 cells[i][j] = new Cell(i, j);
@@ -25,6 +22,17 @@ public class Board extends Rectangle {
         snake = new Snake(snakeHead);
         food = new Food();
         endGame = false;
+        generateFood();
+        food.setFillColor(Color.pink);
+        food.setFilled(true);
+    }
+
+    public Cell[][] getCells() {
+        return this.cells;
+    }
+
+    public Food getFood() {
+        return this.food;
     }
 
     public int getScore() {
@@ -63,11 +71,14 @@ public class Board extends Rectangle {
 
     public void generateFood(){
         boolean newFood = false;
-        while (!newFood) {
+        while (!newFood && !endGame) {
             int row = (int) (Math.random() * ROW);
             int col = (int) (Math.random() * COL);
             if (cells[row][col].getType() != "snake" && cells[row][col].getType() != "food") {
-                cells[row][col].setType("food");
+                food.setCol(col);
+                food.setRow(row);
+                food.setLocation();
+                food.setType("food");
                 newFood = true;
             }
         }
