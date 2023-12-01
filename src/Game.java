@@ -5,6 +5,7 @@ import edu.macalester.graphics.GraphicsGroup;
 public class Game {
     private CanvasWindow window;
     private Board board;
+    private Snake snake;
 
     public Game() {
         this.window = new CanvasWindow("Snake", 600, 600);
@@ -25,17 +26,29 @@ public class Game {
         }
 
         this.window.add(this.board.getFood());
-        Snake snake = this.board.getSnake();
-        snake.draw(); 
-        this.window.add(snake);
+        this.snake = this.board.getSnake();
+        this.snake.draw(); 
+        this.window.add(this.snake);
+
 }
-    
+
 
    
 
     public void generateBackground() {
         
     }
+
+    public void run() {
+        this.window.animate(() -> {
+            // Move the snake in the direction it's facing
+            this.snake.move(this.snake.getNext());
+
+            this.snake.draw();
+        });
+    }
+
+
 
     public static void main(String[] args) {
         new Game();
