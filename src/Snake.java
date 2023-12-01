@@ -8,8 +8,46 @@ public class Snake {
         this.head = pos;
         this.snakeBody.push(this.head);
         this.head.setType("snake");
+
+    public Snake(Cell pos, Cell[][] cells, int initialLength) {
+        this.head = pos;
+        this.snakeBody.push(this.head);
+        this.head.setType("snake");
+        this.cells = cells;
+
+        // intial length
+        for (int i = 1; i < initialLength; i++) {
+            Cell newTail = new Cell(pos.getRow(), pos.getCol() - i);
+            this.snakeBody.push(newTail);
+            newTail.setType("snake");
+        }
     }
 
+
+    public void draw() {
+        //changes to make the head darker
+        for (int i = 0; i < this.snakeBody.size(); i++) {
+            Cell cell = this.snakeBody.get(i);
+            if (i == 0) {
+                cell.setFillColor(new Color(0, 128, 0));
+            } else {
+                cell.setFillColor(new Color(144, 238, 144)); 
+            }
+            cell.setFilled(true);
+            this.cells[cell.getRow()][cell.getCol()] = cell;
+        }
+    }
+
+
+    public void move(Cell nextCell){
+        Cell tail = this.snakeBody.pop(); // remove the tail
+        tail.setType("board"); //
+        this.head = nextCell;
+        this.head.setType("snake");
+        this.snakeBody.push(this.head);
+    }
+
+    
     
     public void addToTail(Cell newTail){
         this.snakeBody.push(newTail);
@@ -47,6 +85,5 @@ public class Snake {
     public Cell getNext() {
         return this.head.getNext();
     }
-
 
 }

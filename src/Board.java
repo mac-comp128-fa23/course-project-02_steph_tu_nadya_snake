@@ -20,6 +20,15 @@ public class Board {
         snake = new Snake(snakeHead);
         food = new Food();
         endGame = false;
+        Cell snakeHead = new Cell(this.ROW / 2, this.COL / 2); 
+        this.snake = new Snake(snakeHead, this.cells, 3);
+        this.food = new Food();
+        this.endGame = false;
+        this.generateFood();
+        this.food.setFillColor(Color.pink);
+        this.food.setFilled(true);
+        this.snake.draw();
+
     }
 
     public int getScore() {
