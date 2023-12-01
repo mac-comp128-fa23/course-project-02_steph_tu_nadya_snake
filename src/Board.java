@@ -1,68 +1,92 @@
+import java.awt.Color;
+import edu.macalester.graphics.GraphicsObject;
+
 public class Board {
-    private Cell[][] cells;
     final int ROW = 20;
     final int COL = 20;
+    private Cell[][] cells;
     private Snake snake;
     private Food food;
     private int score;
     public boolean endGame;
 
     public Board() {
-        cells = new Cell[ROW][COL];
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                cells[i][j] = new Cell(i, j);
-                cells[i][j].setType("empty");
+        this.cells = new Cell[this.ROW][this.COL]; 
+        for (int i = 0; i < this.cells.length; i++) {
+            for (int j = 0; j < this.cells[i].length; j++) {
+                this.cells[i][j] = new Cell(i, j);
+                this.cells[i][j].setType("empty");
             }
         }
 
-        Cell snakeHead = new Cell(0, 0);
-        snake = new Snake(snakeHead);
-        food = new Food();
-        endGame = false;
+        Cell snakeHead = new Cell(this.ROW / 2, this.COL / 2); 
+        this.snake = new Snake(snakeHead, this.cells);
+        this.food = new Food();
+        this.endGame = false;
+        this.generateFood();
+        this.food.setFillColor(Color.pink);
+        this.food.setFilled(true);
+        this.snake.draw();
+
     }
+
+    public Cell[][] getCells() {
+        return this.cells;
+    }
+
+    public Food getFood() {
+        return this.food;
+    }
+    
 
     public int getScore() {
         return this.score;
     }
 
     public void eatFood() {
-        if (snake.getHead().getCol() == food.getCol() && snake.getHead().getRow() == food.getRow()) {
-            score = score + 1;
-            generateFood();
+        if (this.snake.getHead().getCol() == this.food.getCol() && this.snake.getHead().getRow() == this.food.getRow()) {
+            this.score = this.score + 1;
+            this.generateFood();
         }
     }
 
+    public Snake getSnake() {
+        return this.snake;
+    }
+
     public void endGame() {
-        Cell head = snake.getHead();
-        Cell current = snake.getHead().getNext();
+        Cell head = this.snake.getHead();
+        Cell current = this.snake.getHead().getNext();
         // hits itself
         while (current != null) {
             if (head.getCol() == current.getCol() && head.getRow() == current.getRow()) {
-                endGame = true;
+                this.endGame = true;
             }
             current = current.getNext();
         }
         // hit walls
         if (head.getCol() > 20 || head.getRow() > 20) {
-            endGame = true;
+            this.endGame = true;
         }
         if (head.getCol() < 0 || head.getRow() < 0) {
-            endGame = true;
+            this.endGame = true;
         }
         // die
-        if (snake.getTailLength() == 0) {
-            endGame = true;
+        if (this.snake.getTailLength() == 0) {
+            this.endGame = true;
         }
     }
 
     public void generateFood(){
         boolean newFood = false;
-        while (!newFood) {
-            int row = (int) (Math.random() * ROW);
-            int col = (int) (Math.random() * COL);
-            if (cells[row][col].getType() != "snake" && cells[row][col].getType() != "food") {
-                cells[row][col].setType("food");
+        while (!newFood && !this.endGame) {
+            int row = (int) (Math.random() * this.ROW);
+            int col = (int) (Math.random() * this.COL);
+            if (this.cells[row][col].getType() != "snake" && this.cells[row][col].getType() != "food") {
+                this.food.setCol(col);
+                this.food.setRow(row);
+                this.food.setLocation();
+                this.food.setType("food");
                 newFood = true;
             }
         }

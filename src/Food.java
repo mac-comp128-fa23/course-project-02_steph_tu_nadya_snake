@@ -5,14 +5,14 @@ public class Food extends Cell {
     private static int row;
     private static int col;
     private Color color;
-    private int colorCode;
     private Random random;
-    
-    //random score and/or size for food (random color to differentiate too)
-    
+        
     public Food() {
         super(row, col);
-        colorCode = random.nextInt(4) + 1;
+    }
+
+    public void setColor() {
+        int colorCode = random.nextInt(4) + 1;
 
         if (colorCode == 1) {
             //color is pinkish
@@ -30,9 +30,5 @@ public class Food extends Cell {
             //color is blueish
             color = new Color(158, 231, 245);
         }
-    }
-
-    public Color getColor() {
-        return color;
     }
 }
