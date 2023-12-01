@@ -1,40 +1,13 @@
-import java.awt.Color;
 import java.util.LinkedList;
 
-import edu.macalester.graphics.GraphicsGroup;
-
-public class Snake extends GraphicsGroup{
+public class Snake {
     private LinkedList<Cell> snakeBody = new LinkedList<>();
     private Cell head;
-    private Cell[][] cells;
-    
-     
 
-    public Snake(Cell pos, Cell[][] cells) {
+    public Snake(Cell pos) {
         this.head = pos;
         this.snakeBody.push(this.head);
         this.head.setType("snake");
-        this.cells = cells;
-    }
-
-
-    public void draw() {
-        for (Cell cell : this.snakeBody) {
-            cell.setFillColor(Color.GREEN);
-            cell.setFilled(true);
-            this.cells[cell.getRow()][cell.getCol()] = cell;
-        }
-    }
-
-
-    public void move(Cell nextCell)
-    {
-        Cell tail = this.snakeBody.peek();
-        tail.setType("board");
- 
-        this.head = nextCell;
-        this.head.setType("snake");
-        this.snakeBody.push(this.head);
     }
 
     
@@ -55,6 +28,9 @@ public class Snake extends GraphicsGroup{
         }
     }
 
+    public void move(){
+
+    }
 
     public int getTailLength(){
         return this.snakeBody.size() - 1;
