@@ -1,20 +1,8 @@
+import java.awt.Color;
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.GraphicsText;
-import edu.macalester.graphics.ui.Button;
 
 public class Game {
     private CanvasWindow window;
-    private Snake snake;
-    private Food food;
-    private Cell cell;
-    private Board board;
-    private Button exitButton;
-    private GraphicsText scoreText;
-
-    public Game() {
-        window = new CanvasWindow("Snake", 600, 600);
-    }
-
     private Board board;
     private Snake snake;
 
@@ -52,7 +40,6 @@ public class Game {
 
     public void run() {
         this.window.animate(() -> {
-            // Move the snake in the direction it's facing
             this.snake.move(this.snake.getNext());
 
             this.snake.draw();
