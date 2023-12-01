@@ -1,10 +1,14 @@
-public class Cell {
+import edu.macalester.graphics.Rectangle;
+
+public class Cell extends Rectangle {
     private int row;
     private int col;
     private String type;
     private Cell next;
 
     public Cell(int row, int col) {
+        super(50, 75, 25, 25);
+
         this.row = row;
         this.col = col;
     }
@@ -39,5 +43,9 @@ public class Cell {
 
     public void setNext(Cell next) {
         this.next = next;
+    }
+
+    public void setLocation() {
+        setPosition(50 + 25 * row, 75 + 25 * col);
     }
 }
