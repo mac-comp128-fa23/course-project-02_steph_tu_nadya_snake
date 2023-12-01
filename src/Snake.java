@@ -42,12 +42,13 @@ public class Snake extends GraphicsGroup{
 
     public void move(Cell nextCell){
         Cell tail = this.snakeBody.pop(); // remove the tail
-        tail.setType("board"); 
+        tail.setType("board"); //
         this.head = nextCell;
         this.head.setType("snake");
         this.snakeBody.push(this.head);
     }
 
+    
     
     public void addToTail(Cell newTail){
         this.snakeBody.push(newTail);

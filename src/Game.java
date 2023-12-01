@@ -1,5 +1,6 @@
 import java.awt.Color;
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.GraphicsGroup;
 
 public class Game {
     private CanvasWindow window;
@@ -40,6 +41,7 @@ public class Game {
 
     public void run() {
         this.window.animate(() -> {
+            // Move the snake in the direction it's facing
             this.snake.move(this.snake.getNext());
 
             this.snake.draw();

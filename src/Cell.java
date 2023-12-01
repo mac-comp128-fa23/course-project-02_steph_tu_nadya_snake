@@ -46,6 +46,6 @@ public class Cell extends Rectangle {
     }
 
     public void setLocation() {
-        setPosition(50 + 25 * row, 75 + 25 * col);
+        this.setPosition(50 + 25 * this.row, 75 + 25 * this.col);
     }
 }

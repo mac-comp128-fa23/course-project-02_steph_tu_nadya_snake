@@ -1,4 +1,5 @@
 import java.awt.Color;
+import edu.macalester.graphics.GraphicsObject;
 
 public class Board {
     final int ROW = 20;
