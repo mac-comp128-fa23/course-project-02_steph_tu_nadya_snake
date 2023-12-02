@@ -53,13 +53,6 @@ public class Game {
 
 }
 
-
-   
-
-    public void generateBackground() {
-        
-    }
-
     public void run() {
         this.window.animate(() -> {
             // Move the snake in the direction it's facing
@@ -68,8 +61,6 @@ public class Game {
             this.snake.draw();
         });
     }
-
-
 
     public static void main(String[] args) {
         new Game();

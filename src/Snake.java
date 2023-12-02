@@ -52,8 +52,6 @@ public class Snake extends GraphicsGroup{
         this.snakeBody.push(this.head);
     }
 
-    
-    
     public void addToTail(Cell newTail){
         this.snakeBody.push(newTail);
         // update
