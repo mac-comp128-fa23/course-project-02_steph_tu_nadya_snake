@@ -24,7 +24,7 @@ public class Board {
         this.food = new Food();
         this.endGame = false;
         this.generateFood();
-        this.food.setFillColor(Color.pink);
+        //this.food.setFillColor(Color.pink);
         this.food.setFilled(true);
         this.snake.draw();
 
