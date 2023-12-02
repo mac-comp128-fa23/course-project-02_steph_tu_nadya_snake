@@ -1,16 +1,28 @@
 import java.awt.Color;
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsGroup;
+import edu.macalester.graphics.GraphicsText;
 
 public class Game {
     private CanvasWindow window;
+
     private Board board;
     private Snake snake;
+
     public final Color GRID1 = new Color(248,251,247);
     public final Color GRID2 = new Color(246,238,248);
 
+    private GraphicsText title;
+
     public Game() {
         this.window = new CanvasWindow("Snake", 600, 600);
+        window.setBackground(new Color(244,197,227));
+
+        title = new GraphicsText("Snake!");
+        title.setFont("Georgia", FontStyle.BOLD, 32);
+        title.setFillColor(Color.WHITE);
+        window.add(title, 440, 50);
 
         this.board = new Board();
         Cell[][] cells = this.board.getCells();

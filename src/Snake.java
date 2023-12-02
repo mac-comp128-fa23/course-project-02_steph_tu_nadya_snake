@@ -4,12 +4,14 @@ import java.util.LinkedList;
 import edu.macalester.graphics.GraphicsGroup;
 
 public class Snake extends GraphicsGroup{
+
     private LinkedList<Cell> snakeBody = new LinkedList<>();
     private Cell head;
     private Cell[][] cells;
-    
-     
 
+    public final Color SNAKE_COLOR = new Color(176,230,175);
+    public final Color SNAKE_HEAD = new Color(127,206,131);
+    
     public Snake(Cell pos, Cell[][] cells, int initialLength) {
         this.head = pos;
         this.snakeBody.push(this.head);
@@ -30,9 +32,11 @@ public class Snake extends GraphicsGroup{
         for (int i = 0; i < this.snakeBody.size(); i++) {
             Cell cell = this.snakeBody.get(i);
             if (i == 0) {
-                cell.setFillColor(new Color(0, 128, 0));
+                cell.setFillColor(SNAKE_HEAD);
+                cell.setStrokeColor(new Color(199,237,198));
             } else {
-                cell.setFillColor(new Color(144, 238, 144)); 
+                cell.setFillColor(SNAKE_COLOR); 
+                cell.setStrokeColor(new Color(199,237,198));
             }
             cell.setFilled(true);
             this.cells[cell.getRow()][cell.getCol()] = cell;
