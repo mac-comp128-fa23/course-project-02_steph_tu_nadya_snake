@@ -14,6 +14,8 @@ public class Game {
 
     private GraphicsText title;
     private GraphicsText authorText;
+    private GraphicsText description;
+    private GraphicsText scoreText;
 
     public Game() {
         this.window = new CanvasWindow("Snake", 600, 600);
@@ -22,12 +24,22 @@ public class Game {
         title = new GraphicsText("Snake!");
         title.setFont("Georgia", FontStyle.BOLD, 32);
         title.setFillColor(Color.WHITE);
-        window.add(title, 440, 60);
+        window.add(title, 440, 65);
 
         authorText = new GraphicsText("Made by Steph, Nadya & Tu ♥");
         authorText.setFont("Georgia", FontStyle.ITALIC, 15);
         authorText.setFillColor(Color.WHITE);
         window.add(authorText, 12, 593);
+
+        description = new GraphicsText("Press any key to start.");
+        description.setFont("Georgia", FontStyle.PLAIN, 15);
+        description.setFillColor(Color.WHITE);
+        window.add(description, 50, 68);
+
+        scoreText = new GraphicsText("Score: null");
+        scoreText.setFont("Georgia", FontStyle.BOLD, 24);
+        scoreText.setFillColor(Color.WHITE);
+        window.add(scoreText, 50, 45);
 
         this.board = new Board();
         Cell[][] cells = this.board.getCells();
