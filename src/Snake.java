@@ -18,7 +18,7 @@ public class Snake extends GraphicsGroup{
         this.head.setType("snake");
         this.cells = cells;
 
-        // intial length
+        // initial length
         for (int i = 1; i < initialLength; i++) {
             Cell newTail = new Cell(pos.getRow(), pos.getCol() - i);
             this.snakeBody.push(newTail);
