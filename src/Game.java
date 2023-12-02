@@ -1,7 +1,6 @@
 import java.awt.Color;
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
-import edu.macalester.graphics.GraphicsGroup;
 import edu.macalester.graphics.GraphicsText;
 
 public class Game {
@@ -14,6 +13,7 @@ public class Game {
     public final Color GRID2 = new Color(246,238,248);
 
     private GraphicsText title;
+    private GraphicsText authorText;
 
     public Game() {
         this.window = new CanvasWindow("Snake", 600, 600);
@@ -22,7 +22,12 @@ public class Game {
         title = new GraphicsText("Snake!");
         title.setFont("Georgia", FontStyle.BOLD, 32);
         title.setFillColor(Color.WHITE);
-        window.add(title, 440, 50);
+        window.add(title, 440, 60);
+
+        authorText = new GraphicsText("Made by Steph, Nadya & Tu ♥");
+        authorText.setFont("Georgia", FontStyle.ITALIC, 15);
+        authorText.setFillColor(Color.WHITE);
+        window.add(authorText, 12, 593);
 
         this.board = new Board();
         Cell[][] cells = this.board.getCells();
