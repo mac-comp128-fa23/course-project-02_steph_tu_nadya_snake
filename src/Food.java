@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.util.Random;
 
 public class Food extends Cell {
     private static int row;

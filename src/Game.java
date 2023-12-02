@@ -4,6 +4,14 @@ import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
 
 public class Game {
+
+    
+
+    //arrow up = ModifierKey.UP_ARROW
+    //arrow right = ModifierKey.RIGHT_ARROW
+    //arrow down = ModifierKey.DOWN_ARROW
+    //arrow left = ModifierKey.LEFT_ARROW
+
     private CanvasWindow window;
 
     private Board board;
