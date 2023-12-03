@@ -9,6 +9,8 @@ Our team created a replica of the popular interactive Snake game.
 
 <img width="597" alt="Screenshot 2023-12-02 at 2 56 40 PM" src="https://github.com/mac-comp128-fa23/course-project-02_steph_tu_nadya_snake/assets/118240368/fe8838d3-1962-4d9d-807e-472560ff9e8a">
 
+> Technical Requirements: Java 17 and a Java-friendly IDE (we used VS Code) installed.
+
 __Things to know:__
 
 - The snake moves continuously in the direction that it is facing, so don't forget to hit another arrow key before it either runs into itself or the wall!
