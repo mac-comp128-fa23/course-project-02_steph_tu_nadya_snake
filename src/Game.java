@@ -5,8 +5,6 @@ import edu.macalester.graphics.GraphicsText;
 
 public class Game {
 
-    
-
     //arrow up = ModifierKey.UP_ARROW
     //arrow right = ModifierKey.RIGHT_ARROW
     //arrow down = ModifierKey.DOWN_ARROW
@@ -70,8 +68,7 @@ public class Game {
         this.snake = this.board.getSnake();
         this.snake.draw(); 
         this.window.add(this.snake);
-
-}
+    }
 
     public void run() {
         this.window.animate(() -> {
