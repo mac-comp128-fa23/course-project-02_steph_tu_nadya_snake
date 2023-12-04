@@ -27,7 +27,7 @@ public class Game {
     static final int UNIT_SIZE = 25;
     static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)/UNIT_SIZE;
 
-    static char direction = 'U';
+    static char direction;
     private double[] x = new double[50];
     private double[] y = new double[75];
 
@@ -39,16 +39,16 @@ public class Game {
 
         //key events
         this.window.onKeyDown(event -> {
-            if ((event.getKey() == Key.SPACE) && !this.gameStarted) {
-                this.gameStarted = true;
+            // if ((event.getKey() == Key.SPACE) && !this.gameStarted) {
+            //     this.gameStarted = true;
+            //     direction = 'U';
+            if ((event.getKey() == Key.UP_ARROW) && !this.gameStarted) {
                 direction = 'U';
-            } else if ((event.getKey() == Key.UP_ARROW) && this.gameStarted) {
-                direction = 'U';
-            } else if ((event.getKey() == Key.DOWN_ARROW) && this.gameStarted) {
+            } else if ((event.getKey() == Key.DOWN_ARROW) && !this.gameStarted) {
                 direction = 'D';
-            } else if ((event.getKey() == Key.LEFT_ARROW) && this.gameStarted) {
+            } else if ((event.getKey() == Key.LEFT_ARROW) && !this.gameStarted) {
                 direction = 'L';
-            } else if ((event.getKey() == Key.RIGHT_ARROW) && this.gameStarted) {
+            } else if ((event.getKey() == Key.RIGHT_ARROW) && !this.gameStarted) {
                 direction = 'R';
             }
             // Passed Test
@@ -91,57 +91,52 @@ public class Game {
         }
     }
 
-    public void snakeMove(int rowChange, int colChange) { 
+    public void snakeMove() { 
+
         Cell current = this.snake.getHead();
         Cell next = current.getNext();
         while (next != null) {
             current.setPosition(next.getX(), next.getY());
-            current.setLocation();
             current = next;
             next = current.getNext();
         }
-        this.snake.getTail().setRow(this.snake.getTail().getRow() + rowChange);
-        this.snake.getTail().setCol(this.snake.getTail().getCol() + colChange);
-        this.snake.getTail().setLocation();
+    
+        switch (direction) {
+            case 'D':
+                current.setCol(current.getCol() + 1);
+                break;
+            case 'U':
+                current.setCol(current.getCol() - 1);
+                break;
+        }
+        current.setLocation();
+
     }
 
-    public void snakeMoving() {
-        int change = (int) Math.random() * 1;
-        int rowChange = (int) Math.random() * 2;
-        int colChange = (int) Math.random() * 2;
+    // public void snakeMoving() {
+    //     int change = (int) Math.random() * 1;
+    //     int rowChange = (int) Math.random() * 2;
+    //     int colChange = (int) Math.random() * 2;
         
-        Cell current = this.snake.getHead();
-        Cell next = current.getNext();
-        while (next != null) {
-            current.setPosition(next.getX(), next.getY());
-            current = next;
-            next = current.getNext();
-        }
-        if (change == 0) {
-            this.snake.getTail().setRow(this.snake.getTail().getRow() + rowChange - 1);
-        } else {
-            this.snake.getTail().setCol(this.snake.getTail().getCol() + colChange - 1);
-        }
-        this.snake.getTail().setLocation();
-    }
+    //     Cell current = this.snake.getHead();
+    //     Cell next = current.getNext();
+    //     while (next != null) {
+    //         current.setPosition(next.getX(), next.getY());
+    //         current = next;
+    //         next = current.getNext();
+    //     }
+    //     if (change == 0) {
+    //         this.snake.getTail().setRow(this.snake.getTail().getRow() + rowChange - 1);
+    //     } else {
+    //         this.snake.getTail().setCol(this.snake.getTail().getCol() + colChange - 1);
+    //     }
+    //     this.snake.getTail().setLocation();
+    // }
 
     public void run() {
         this.window.animate(() -> {
-            snakeMoving();
-            // switch (direction) {
-            //     case 'U':
-            //         this.snakeMove(-1,0);
-            //         break;
-            //     case 'D':
-            //         this.snakeMove(1,0);
-            //         break;
-            //     case 'R':
-            //         this.snakeMove(0,1);
-            //         break;
-            //     case 'L':
-            //         this.snakeMove(0,-1);
-            //         break;
-            // }
+            // this.snakeMoving();
+            this.snakeMove();
         });
     }
 
