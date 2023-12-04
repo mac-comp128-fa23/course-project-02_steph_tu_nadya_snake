@@ -16,26 +16,19 @@ public class Snake extends GraphicsGroup{
         this.cells = cells;
 
         this.head = new Cell(this.cells.length / 2, this.cells[0].length / 2);
-        this.tail = head;
+        this.tail = this.head;
         this.snakeBody.push(this.head);
-        cells[head.getRow()][head.getCol()].setType("snake");
+        cells[this.head.getRow()][this.head.getCol()].setType("snake");
 
         for (int i = 0; i < initialLength - 1; i++) {
-            Cell newTail = new Cell(tail.getRow(), tail.getCol() - 1);
+            Cell newTail = new Cell(this.tail.getRow(), this.tail.getCol() - 1);
             this.tail.setNext(newTail);
             this.snakeBody.push(newTail);
             this.tail = newTail;
-            this.cells[tail.getRow()][tail.getCol()].setType("snake");
+            this.cells[this.tail.getRow()][this.tail.getCol()].setType("snake");
         }
     }
 
-    public void move(Cell nextCell){
-        Cell tail = this.snakeBody.pop(); // remove the tail
-        tail.setType("board"); //
-        this.head = nextCell;
-        this.head.setType("snake");
-        this.snakeBody.push(this.head);
-    }
 
     public void addToTail(Cell newTail){
         this.snakeBody.push(newTail);
