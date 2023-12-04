@@ -1,10 +1,11 @@
-
 public class Board {
     final int ROW = 20;
     final int COL = 20;
     private Cell[][] cells;
+    
     private Snake snake;
     private Food food;
+    
     private int score;
     public boolean endGame;
 
@@ -17,11 +18,12 @@ public class Board {
             }
         }
 
+        this.food = new Food();
+        this.generateFood();
+
         Cell snakeHead = new Cell(this.ROW / 2, this.COL / 2); 
         this.snake = new Snake(snakeHead, this.cells, 3);
-        this.food = new Food();
         this.endGame = false;
-        this.generateFood();
         this.food.setFilled(true);
         this.snake.draw();
 
@@ -43,6 +45,7 @@ public class Board {
     public void eatFood() {
         if (this.snake.getHead().getCol() == this.food.getCol() && this.snake.getHead().getRow() == this.food.getRow()) {
             this.score = this.score + 1;
+            this.food.resetCell();
             this.generateFood();
         }
     }

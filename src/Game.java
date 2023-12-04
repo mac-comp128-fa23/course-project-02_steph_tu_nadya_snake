@@ -51,6 +51,7 @@ public class Game {
         drawBoard(this.board.getCells());
 
         this.window.add(this.board.getFood());
+        
         this.snake = this.board.getSnake();
         this.snake.draw(); 
         this.window.add(this.snake);
@@ -60,15 +61,8 @@ public class Game {
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 cells[i][j].setLocation();
-                if ((i + j) % 2 == 0) {
-                    cells[i][j].setFillColor(GRID1);
-                    cells[i][j].setStrokeColor(Color.WHITE);
-                    window.add(cells[i][j]);
-                } else {
-                    cells[i][j].setFillColor(GRID2);
-                    cells[i][j].setStrokeColor(Color.WHITE);
-                    window.add(cells[i][j]);
-                }
+                cells[i][j].resetCell();
+                this.window.add(cells[i][j]);
             }
         }
     }
