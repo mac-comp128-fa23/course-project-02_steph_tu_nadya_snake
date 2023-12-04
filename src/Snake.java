@@ -1,7 +1,6 @@
-import java.awt.Color;
-import java.util.LinkedList;
-
 import edu.macalester.graphics.GraphicsGroup;
+import java.util.LinkedList;
+import java.awt.Color;
 
 public class Snake extends GraphicsGroup{
 
