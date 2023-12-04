@@ -80,7 +80,6 @@ public class Game {
     public void drawSnake(LinkedList<Cell> snakeBody) {
         for (int i = 0; i < snakeBody.size(); i++) {
             Cell cell = snakeBody.get(i);
-            cell.setLocation();
             if (i == 0) {
                 cell.setFillColor(this.SNAKE_HEAD);
                 cell.setStrokeColor(new Color(199,237,198));
@@ -120,12 +119,9 @@ public class Game {
     }
 
     public void run() {
-        // double step = 0.015;
-        // radius = 150;
-
         this.window.animate(() -> {
 
-            this.snakeMove(this.x,this.y);
+            this.snakeMove(0,0);
         });
     }
 
