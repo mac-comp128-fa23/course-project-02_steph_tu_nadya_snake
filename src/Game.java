@@ -38,39 +38,24 @@ public class Game {
    private double[] x = new double[50];
    private double[] y = new double[75];
 
+   private Boolean gameStarted = false;
+
     public Game() {
-        this.window = new CanvasWindow("Snake", SCREEN_WIDTH, SCREEN_HEIGHT);
-        this.window.setBackground(new Color(244,197,227));
 
-        this.title = new GraphicsText("Snake!");
-        this.title.setFont("Georgia", FontStyle.BOLD, 32);
-        this.title.setFillColor(Color.WHITE);
-        this.window.add(this.title, 440, 65);
-
-        this.authorText = new GraphicsText("Made by Steph, Nadya & Tu ♥");
-        this.authorText.setFont("Georgia", FontStyle.ITALIC, 15);
-        this.authorText.setFillColor(Color.WHITE);
-        this.window.add(this.authorText, 12, 593);
-
-        this.description = new GraphicsText("Press any key to start.");
-        this.description.setFont("Georgia", FontStyle.PLAIN, 15);
-        this.description.setFillColor(Color.WHITE);
-        this.window.add(this.description, 50, 68);
-
-        this.scoreText = new GraphicsText("Score: null");
-        this.scoreText.setFont("Georgia", FontStyle.BOLD, 24);
-        this.scoreText.setFillColor(Color.WHITE);
-        this.window.add(this.scoreText, 50, 45);
+        setGraphics();
 
         //key events
         this.window.onKeyDown(event -> {
-            if (event.getKey() == Key.UP_ARROW) {
+            if (event.getKey() == Key.SPACE && !gameStarted) {
+                gameStarted = true;
                 direction = 'U';
-            } else if (event.getKey() == Key.DOWN_ARROW) {
+            } else if (event.getKey() == Key.UP_ARROW && gameStarted) {
+                direction = 'U';
+            } else if (event.getKey() == Key.DOWN_ARROW && gameStarted) {
                 direction = 'D';
-            } else if (event.getKey() == Key.LEFT_ARROW) {
+            } else if (event.getKey() == Key.LEFT_ARROW && gameStarted) {
                 direction = 'L';
-            } else if (event.getKey() == Key.RIGHT_ARROW) {
+            } else if (event.getKey() == Key.RIGHT_ARROW && gameStarted) {
                 direction = 'R';
             }
             // Passed Test
@@ -82,6 +67,7 @@ public class Game {
         this.window.add(this.board.getFood());
         this.snake = this.board.getSnake();
         this.drawSnake(this.snake.getSnakeBody());
+        this.reset();
         this.run();
     }
 
@@ -112,27 +98,28 @@ public class Game {
 
 
     protected void snakeMove(double[] x, double[] y) {  
-        // Move the body segments
-        for (int i = this.snake.getLength() - 1; i > 0; i--) {
-            x[i] = x[i - 1];
-            y[i] = y[i - 1];
-        }
+        // // Move the body segments
+        // for (int i = this.snake.getLength() - 1; i > 0; i--) {
+        //     x[i] = x[i - 1];
+        //     y[i] = y[i - 1];
+        // }
     
-        // Move the head based on the current direction
-        switch (direction) {
-            case 'U':
-                y[0] = y[0] - UNIT_SIZE;
-                break;
-            case 'D':
-                y[0] = y[0] + UNIT_SIZE;
-                break;
-            case 'R':
-                x[0] = x[0] + UNIT_SIZE;
-                break;
-            case 'L':
-                x[0] = x[0] - UNIT_SIZE;
-                break;
-        }
+        // // Move the head based on the current direction
+        // switch (direction) {
+        //     case 'U':
+        //         y[0] = y[0] - UNIT_SIZE;
+        //         break;
+        //     case 'D':
+        //         y[0] = y[0] + UNIT_SIZE;
+        //         break;
+        //     case 'R':
+        //         x[0] = x[0] + UNIT_SIZE;
+        //         break;
+        //     case 'L':
+        //         x[0] = x[0] - UNIT_SIZE;
+        //         break;
+        // }
+
     }
 
 
@@ -149,6 +136,35 @@ public class Game {
 
             this.snakeMove(this.x,this.y);
         });
+    }
+
+    public void reset() {
+        gameStarted = false;
+    }
+
+    public void setGraphics() {
+        this.window = new CanvasWindow("Snake", SCREEN_WIDTH, SCREEN_HEIGHT);
+        this.window.setBackground(new Color(244,197,227));
+
+        this.title = new GraphicsText("Snake!");
+        this.title.setFont("Georgia", FontStyle.BOLD, 32);
+        this.title.setFillColor(Color.WHITE);
+        this.window.add(this.title, 440, 65);
+
+        this.authorText = new GraphicsText("Made by Steph, Nadya & Tu ♥");
+        this.authorText.setFont("Georgia", FontStyle.ITALIC, 15);
+        this.authorText.setFillColor(Color.WHITE);
+        this.window.add(this.authorText, 12, 593);
+
+        this.description = new GraphicsText("Press spacebar to start.");
+        this.description.setFont("Georgia", FontStyle.PLAIN, 15);
+        this.description.setFillColor(Color.WHITE);
+        this.window.add(this.description, 50, 68);
+
+        this.scoreText = new GraphicsText("Score: null");
+        this.scoreText.setFont("Georgia", FontStyle.BOLD, 24);
+        this.scoreText.setFillColor(Color.WHITE);
+        this.window.add(this.scoreText, 50, 45);
     }
 
     public static void main(String[] args) {
