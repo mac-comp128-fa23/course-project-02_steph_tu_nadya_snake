@@ -31,7 +31,7 @@ __How to run the program:__
 
 __How to play the game:__
 
-1. Press any key on your keyboard to start the game.
+1. Press the spaceboard on your keyboard to start the game.
 2. Locate the food object placed randomly on the game board.
 3. Control the snake via the arrow keys (up, right, down, left) towards the grid containing the food.
 4. Collect as many pieces of food possible to grow your snake WITHOUT running into itself or running into the board's boundaries.
