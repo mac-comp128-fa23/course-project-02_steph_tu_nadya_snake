@@ -7,11 +7,6 @@ import java.awt.Color;
 
 public class Game {
 
-    //arrow up = ModifierKey.UP_ARROW
-    //arrow right = ModifierKey.RIGHT_ARROW
-    //arrow down = ModifierKey.DOWN_ARROW
-    //arrow left = ModifierKey.LEFT_ARROW
-
     private CanvasWindow window;
 
     private Board board;
@@ -34,28 +29,28 @@ public class Game {
     static final int UNIT_SIZE = 25;
     static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)/UNIT_SIZE;
 
-   static char direction = 'U';
-   private double[] x = new double[50];
-   private double[] y = new double[75];
+    static char direction = 'U';
+    private double[] x = new double[50];
+    private double[] y = new double[75];
 
-   private Boolean gameStarted = false;
+    private Boolean gameStarted = false;
 
     public Game() {
 
-        setGraphics();
+        this.window = new CanvasWindow("Snake", SCREEN_WIDTH, SCREEN_HEIGHT);
 
         //key events
         this.window.onKeyDown(event -> {
-            if (event.getKey() == Key.SPACE && !gameStarted) {
+            if ((event.getKey() == Key.SPACE) && !gameStarted) {
                 gameStarted = true;
                 direction = 'U';
-            } else if (event.getKey() == Key.UP_ARROW && gameStarted) {
+            } else if ((event.getKey() == Key.UP_ARROW) && gameStarted) {
                 direction = 'U';
-            } else if (event.getKey() == Key.DOWN_ARROW && gameStarted) {
+            } else if ((event.getKey() == Key.DOWN_ARROW) && gameStarted) {
                 direction = 'D';
-            } else if (event.getKey() == Key.LEFT_ARROW && gameStarted) {
+            } else if ((event.getKey() == Key.LEFT_ARROW) && gameStarted) {
                 direction = 'L';
-            } else if (event.getKey() == Key.RIGHT_ARROW && gameStarted) {
+            } else if ((event.getKey() == Key.RIGHT_ARROW) && gameStarted) {
                 direction = 'R';
             }
             // Passed Test
@@ -69,6 +64,9 @@ public class Game {
         this.drawSnake(this.snake.getSnakeBody());
         this.reset();
         this.run();
+
+        setGraphics();
+
     }
 
     public void drawBoard(Cell[][] cells) {
@@ -96,9 +94,8 @@ public class Game {
         }
     }
 
-
     protected void snakeMove(double[] x, double[] y) {  
-        // // Move the body segments
+        // Move the body segments
         // for (int i = this.snake.getLength() - 1; i > 0; i--) {
         //     x[i] = x[i - 1];
         //     y[i] = y[i - 1];
@@ -120,19 +117,15 @@ public class Game {
         //         break;
         // }
 
-    }
+        
 
+    }
 
     public void run() {
         // double step = 0.015;
         // radius = 150;
 
         this.window.animate(() -> {
-            // degree += step;
-            // double thisR = radius+Math.sin(8*degree)*25;
-
-            // double x = Math.sin(degree)*thisR + 150;
-            // double y = Math.cos(degree)*thisR + 150;
 
             this.snakeMove(this.x,this.y);
         });
@@ -142,8 +135,12 @@ public class Game {
         gameStarted = false;
     }
 
+    public void updateScoreText() {
+        scoreText.setText("Score: " + Integer.toString(board.getScore()));
+    }
+
     public void setGraphics() {
-        this.window = new CanvasWindow("Snake", SCREEN_WIDTH, SCREEN_HEIGHT);
+
         this.window.setBackground(new Color(244,197,227));
 
         this.title = new GraphicsText("Snake!");
@@ -161,13 +158,15 @@ public class Game {
         this.description.setFillColor(Color.WHITE);
         this.window.add(this.description, 50, 68);
 
-        this.scoreText = new GraphicsText("Score: null");
+        this.scoreText = new GraphicsText("Score: " + Integer.toString(board.getScore()));
         this.scoreText.setFont("Georgia", FontStyle.BOLD, 24);
         this.scoreText.setFillColor(Color.WHITE);
         this.window.add(this.scoreText, 50, 45);
+
     }
 
     public static void main(String[] args) {
         new Game();
     }
+
 }
