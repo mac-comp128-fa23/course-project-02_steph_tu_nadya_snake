@@ -106,6 +106,7 @@ public class Game {
     }
 
     public void snakeMoving() {
+        int change = (int) Math.random() * 1;
         int rowChange = (int) Math.random() * 2;
         int colChange = (int) Math.random() * 2;
         
@@ -116,8 +117,11 @@ public class Game {
             current = next;
             next = current.getNext();
         }
-        this.snake.getTail().setRow(this.snake.getTail().getRow() + rowChange - 1);
-        this.snake.getTail().setCol(this.snake.getTail().getCol() + colChange - 1);
+        if (change == 0) {
+            this.snake.getTail().setRow(this.snake.getTail().getRow() + rowChange - 1);
+        } else {
+            this.snake.getTail().setCol(this.snake.getTail().getCol() + colChange - 1);
+        }
         this.snake.getTail().setLocation();
     }
 
