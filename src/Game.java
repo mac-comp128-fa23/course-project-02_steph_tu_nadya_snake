@@ -22,8 +22,6 @@ public class Game {
     private GraphicsText description;
     private GraphicsText scoreText;
     
-    // private static double radius = 0;
-    // private static double degree = 0;
     static final int SCREEN_HEIGHT = 600;
     static final int SCREEN_WIDTH = 600;
     static final int UNIT_SIZE = 25;
@@ -94,7 +92,7 @@ public class Game {
         }
     }
 
-    protected void snakeMove(double[] x, double[] y) {  
+    protected void snakeMove(int x, int y) {  
         // Move the body segments
         // for (int i = this.snake.getLength() - 1; i > 0; i--) {
         //     x[i] = x[i - 1];

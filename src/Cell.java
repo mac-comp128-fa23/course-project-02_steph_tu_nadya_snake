@@ -11,7 +11,7 @@ public class Cell extends Rectangle {
     public final Color GRID2 = new Color(246,238,248);
 
     public Cell(int row, int col) {
-        super(50, 75, 25, 25);
+        super(50 + 25 * row, 75 + 25 * col, 25, 25);
 
         this.row = row;
         this.col = col;
