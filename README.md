@@ -41,4 +41,19 @@ __How to play the game:__
 ## __Societal Impact:__
 
 ## __Goals:__
-   
+
+Our team intends to create an exact replica of Snake. The project's core goals include successfully implementing all of the original game details (Snake needs to eat food, snake cannot run off the board, snake can't run into itself, etc.) as well as using what we learned this semester in Data Structures to do it. Peripheral goals include implementing an extra aspect into the game where the snake loses segments of itself after a certain amount of time without eating food. If there is enough time towards the end, we will also focus on upgrading the UI and user experience. The biggest goal for our team is to successfully showcase the skills and knowledge we have learned throughout CS128 in a self-driven project. 
+
+## __Data Structures:__
+
+### *Linked List*
+
+insert text here
+
+### *Stack*
+
+insert text here
+
+### *Two-dimensional Array*
+
+insert text here
