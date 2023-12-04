@@ -1,7 +1,8 @@
-import java.awt.Color;
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
+import edu.macalester.graphics.FontStyle;
+import java.util.LinkedList;
+import java.awt.Color;
 
 public class Game {
 
@@ -17,6 +18,8 @@ public class Game {
 
     public final Color GRID1 = new Color(248,251,247);
     public final Color GRID2 = new Color(246,238,248);
+    public final Color SNAKE_HEAD = new Color(127,206,131);
+    public final Color SNAKE_COLOR = new Color(176,230,175);
 
     private GraphicsText title;
     private GraphicsText authorText;
@@ -53,8 +56,7 @@ public class Game {
         this.window.add(this.board.getFood());
         
         this.snake = this.board.getSnake();
-        this.snake.draw(); 
-        this.window.add(this.snake);
+        drawSnake(this.snake.getSnakeBody());
     }
 
     public void drawBoard(Cell[][] cells) {
@@ -67,12 +69,26 @@ public class Game {
         }
     }
 
+    public void drawSnake(LinkedList<Cell> snakeBody) {
+        for (int i = 0; i < snakeBody.size(); i++) {
+            Cell cell = snakeBody.get(i);
+            cell.setLocation();
+            if (i == 0) {
+                cell.setFillColor(SNAKE_HEAD);
+                cell.setStrokeColor(new Color(199,237,198));
+            } else {
+                cell.setFillColor(SNAKE_COLOR); 
+                cell.setStrokeColor(new Color(199,237,198));
+            }
+            this.window.add(cell);;
+        }
+    }
+
     public void run() {
         this.window.animate(() -> {
             // Move the snake in the direction it's facing
             this.snake.move(this.snake.getNext());
 
-            this.snake.draw();
         });
     }
 

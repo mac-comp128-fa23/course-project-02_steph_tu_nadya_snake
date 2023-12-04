@@ -7,42 +7,28 @@ public class Snake extends GraphicsGroup{
 
     private LinkedList<Cell> snakeBody = new LinkedList<>();
     private Cell head;
+    private Cell tail;
     private Cell[][] cells;
 
     public final Color SNAKE_COLOR = new Color(176,230,175);
     public final Color SNAKE_HEAD = new Color(127,206,131);
     
-    public Snake(Cell pos, Cell[][] cells, int initialLength) {
-        this.head = pos;
-        this.snakeBody.push(this.head);
-        this.head.setType("snake");
+    public Snake(Cell[][] cells, int initialLength) {
         this.cells = cells;
 
-        // initial length
-        for (int i = 1; i < initialLength; i++) {
-            Cell newTail = new Cell(pos.getRow(), pos.getCol() - i);
+        this.head = new Cell(this.cells.length / 2, this.cells[0].length / 2);
+        this.tail = head;
+        this.snakeBody.push(this.head);
+        cells[head.getRow()][head.getCol()].setType("snake");
+
+        for (int i = 0; i < initialLength - 1; i++) {
+            Cell newTail = new Cell(tail.getRow(), tail.getCol() - 1);
+            this.tail.setNext(newTail);
             this.snakeBody.push(newTail);
-            newTail.setType("snake");
+            this.tail = newTail;
+            this.cells[tail.getRow()][tail.getCol()].setType("snake");
         }
     }
-
-
-    public void draw() {
-        //changes to make the head darker
-        for (int i = 0; i < this.snakeBody.size(); i++) {
-            Cell cell = this.snakeBody.get(i);
-            if (i == 0) {
-                cell.setFillColor(SNAKE_HEAD);
-                cell.setStrokeColor(new Color(199,237,198));
-            } else {
-                cell.setFillColor(SNAKE_COLOR); 
-                cell.setStrokeColor(new Color(199,237,198));
-            }
-            cell.setFilled(true);
-            this.cells[cell.getRow()][cell.getCol()] = cell;
-        }
-    }
-
 
     public void move(Cell nextCell){
         Cell tail = this.snakeBody.pop(); // remove the tail

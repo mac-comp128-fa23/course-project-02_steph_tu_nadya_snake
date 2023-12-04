@@ -21,12 +21,10 @@ public class Board {
         this.food = new Food();
         this.generateFood();
 
-        Cell snakeHead = new Cell(this.ROW / 2, this.COL / 2); 
-        this.snake = new Snake(snakeHead, this.cells, 3);
-        this.endGame = false;
-        this.food.setFilled(true);
-        this.snake.draw();
+        this.snake = new Snake(this.cells, 3);
 
+        this.score = 0;
+        this.endGame = false;
     }
 
     public Cell[][] getCells() {
@@ -36,10 +34,17 @@ public class Board {
     public Food getFood() {
         return this.food;
     }
-    
+
+    public Snake getSnake() {
+        return this.snake;
+    }
 
     public int getScore() {
         return this.score;
+    }
+
+    public boolean getEndGame() {
+        return this.endGame;
     }
 
     public void eatFood() {
@@ -48,10 +53,6 @@ public class Board {
             this.food.resetCell();
             this.generateFood();
         }
-    }
-
-    public Snake getSnake() {
-        return this.snake;
     }
 
     public void endGame() {
