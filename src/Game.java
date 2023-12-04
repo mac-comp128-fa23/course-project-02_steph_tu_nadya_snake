@@ -91,32 +91,36 @@ public class Game {
         }
     }
 
-    public void snakeMove(int row, int col) { 
+    public void snakeMove(int rowChange, int colChange) { 
         Cell current = this.snake.getHead();
-
-        switch (direction) {
-            case 'U':
-            
-                break;
-            case 'D':
-                this.y[0] = this.y[0] + UNIT_SIZE;
-                break;
-            case 'R':
-                this.x[0] = this.x[0] + UNIT_SIZE;
-                break;
-            case 'L':
-                this.x[0] = this.x[0] - UNIT_SIZE;
-                break;
+        Cell next = current.getNext();
+        while (next != null) {
+            current.setPosition(next.getX(), next.getY());
+            current.setLocation();
+            current = next;
+            next = current.getNext();
         }
-
-        
-
+        this.snake.getTail().setRow(this.snake.getTail().getRow() + rowChange);
+        this.snake.getTail().setCol(this.snake.getTail().getCol() + colChange);
+        this.snake.getTail().setLocation();
     }
 
     public void run() {
         this.window.animate(() -> {
-
-            this.snakeMove(0,0);
+            switch (direction) {
+                case 'U':
+                    this.snakeMove(-1,0);
+                    break;
+                case 'D':
+                    this.snakeMove(1,0);
+                    break;
+                case 'R':
+                    this.snakeMove(0,1);
+                    break;
+                case 'L':
+                    this.snakeMove(0,-1);
+                    break;
+            }
         });
     }
 
