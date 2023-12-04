@@ -26,6 +26,9 @@ public class Game {
     private GraphicsText description;
     private GraphicsText scoreText;
 
+    private static double radius = 0;
+    private static double degree = 0;
+
     public Game() {
         this.window = new CanvasWindow("Snake", 600, 600);
         window.setBackground(new Color(244,197,227));
@@ -57,6 +60,7 @@ public class Game {
         
         this.snake = this.board.getSnake();
         drawSnake(this.snake.getSnakeBody());
+        run();
     }
 
     public void drawBoard(Cell[][] cells) {
@@ -85,11 +89,29 @@ public class Game {
     }
 
     public void run() {
-        this.window.animate(() -> {
-            // Move the snake in the direction it's facing
-            this.snake.move(this.snake.getNext());
+        double step = 0.015;
+        radius = 150;
 
+        window.animate(() -> {
+            degree += step;
+            double thisR = radius+Math.sin(8*degree)*25;
+
+            double x = Math.sin(degree)*thisR + 150;
+            double y = Math.cos(degree)*thisR + 150;
+
+            snakeMove(x,y);
         });
+    }
+
+    protected void snakeMove(double x, double y) {
+        Cell current = this.snake.getHead();
+        Cell next = current.getNext();
+        while (next != null) {
+            current.setPosition(next.getX(), next.getY());
+            current = next;
+            next = current.getNext();
+        }
+        this.snake.getTail().setPosition(x,y);        
     }
 
     public static void main(String[] args) {

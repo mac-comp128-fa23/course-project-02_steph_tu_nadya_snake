@@ -44,7 +44,6 @@ public class Snake extends GraphicsGroup{
         this.head.setNext(newTail);
         newTail.setType("snake");
     }
-   
 
     public void removeFromTail(){
         if (this.snakeBody.size() >= 1) {
@@ -55,9 +54,8 @@ public class Snake extends GraphicsGroup{
         }
     }
 
-
-    public int getTailLength(){
-        return this.snakeBody.size() - 1;
+    public int getLength(){
+        return this.snakeBody.size();
     }
 
     public LinkedList<Cell> getSnakeBody() {
@@ -68,8 +66,7 @@ public class Snake extends GraphicsGroup{
         return this.head;
     }
 
-    public Cell getNext() {
-        return this.head.getNext();
+    public Cell getTail() {
+        return this.tail;
     }
-
 }

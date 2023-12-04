@@ -73,7 +73,7 @@ public class Board {
             this.endGame = true;
         }
         // die
-        if (this.snake.getTailLength() == 0) {
+        if (this.snake.getLength() == 0) {
             this.endGame = true;
         }
     }
