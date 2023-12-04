@@ -39,16 +39,16 @@ public class Game {
 
         //key events
         this.window.onKeyDown(event -> {
-            if ((event.getKey() == Key.SPACE) && !gameStarted) {
-                gameStarted = true;
+            if ((event.getKey() == Key.SPACE) && !this.gameStarted) {
+                this.gameStarted = true;
                 direction = 'U';
-            } else if ((event.getKey() == Key.UP_ARROW) && gameStarted) {
+            } else if ((event.getKey() == Key.UP_ARROW) && this.gameStarted) {
                 direction = 'U';
-            } else if ((event.getKey() == Key.DOWN_ARROW) && gameStarted) {
+            } else if ((event.getKey() == Key.DOWN_ARROW) && this.gameStarted) {
                 direction = 'D';
-            } else if ((event.getKey() == Key.LEFT_ARROW) && gameStarted) {
+            } else if ((event.getKey() == Key.LEFT_ARROW) && this.gameStarted) {
                 direction = 'L';
-            } else if ((event.getKey() == Key.RIGHT_ARROW) && gameStarted) {
+            } else if ((event.getKey() == Key.RIGHT_ARROW) && this.gameStarted) {
                 direction = 'R';
             }
             // Passed Test
@@ -63,7 +63,7 @@ public class Game {
         this.reset();
         this.run();
 
-        setGraphics();
+        this.setGraphics();
 
     }
 
@@ -91,28 +91,23 @@ public class Game {
         }
     }
 
-    protected void snakeMove(int x, int y) {  
-        // Move the body segments
-        // for (int i = this.snake.getLength() - 1; i > 0; i--) {
-        //     x[i] = x[i - 1];
-        //     y[i] = y[i - 1];
-        // }
-    
-        // // Move the head based on the current direction
-        // switch (direction) {
-        //     case 'U':
-        //         y[0] = y[0] - UNIT_SIZE;
-        //         break;
-        //     case 'D':
-        //         y[0] = y[0] + UNIT_SIZE;
-        //         break;
-        //     case 'R':
-        //         x[0] = x[0] + UNIT_SIZE;
-        //         break;
-        //     case 'L':
-        //         x[0] = x[0] - UNIT_SIZE;
-        //         break;
-        // }
+    public void snakeMove(int row, int col) { 
+        Cell current = this.snake.getHead();
+
+        switch (direction) {
+            case 'U':
+            
+                break;
+            case 'D':
+                this.y[0] = this.y[0] + UNIT_SIZE;
+                break;
+            case 'R':
+                this.x[0] = this.x[0] + UNIT_SIZE;
+                break;
+            case 'L':
+                this.x[0] = this.x[0] - UNIT_SIZE;
+                break;
+        }
 
         
 
@@ -126,11 +121,12 @@ public class Game {
     }
 
     public void reset() {
-        gameStarted = false;
+        this.gameStarted = false;
     }
 
+    
     public void updateScoreText() {
-        scoreText.setText("Score: " + Integer.toString(board.getScore()));
+        this.scoreText.setText("Score: " + Integer.toString(this.board.getScore()));
     }
 
     public void setGraphics() {
@@ -152,7 +148,7 @@ public class Game {
         this.description.setFillColor(Color.WHITE);
         this.window.add(this.description, 50, 68);
 
-        this.scoreText = new GraphicsText("Score: " + Integer.toString(board.getScore()));
+        this.scoreText = new GraphicsText("Score: " + Integer.toString(this.board.getScore()));
         this.scoreText.setFont("Georgia", FontStyle.BOLD, 24);
         this.scoreText.setFillColor(Color.WHITE);
         this.window.add(this.scoreText, 50, 45);
