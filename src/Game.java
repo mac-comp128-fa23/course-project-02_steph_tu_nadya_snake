@@ -96,42 +96,27 @@ public class Game {
     
         switch (direction) {
             case 'D':
-                current.setCol(current.getCol() + 1);
-                break;
             case 'U':
                 current.setCol(current.getCol() - 1);
                 break;
+            case 'D':
+                current.setCol(current.getCol() - 1);
+                break;
+            case 'L':
+                current.setRow(current.getRow() - 1);
+                break;
+            case 'R':
+                current.setRow(current.getRow() + 1);
+                break;    
         }
         current.setLocation();
 
         //set this here if you want to change speed of snake movement:
-        window.pause(200);
-
+        window.pause(100);
     }
-
-    // public void snakeMoving() {
-    //     int change = (int) Math.random() * 1;
-    //     int rowChange = (int) Math.random() * 2;
-    //     int colChange = (int) Math.random() * 2;
-        
-    //     Cell current = this.snake.getHead();
-    //     Cell next = current.getNext();
-    //     while (next != null) {
-    //         current.setPosition(next.getX(), next.getY());
-    //         current = next;
-    //         next = current.getNext();
-    //     }
-    //     if (change == 0) {
-    //         this.snake.getTail().setRow(this.snake.getTail().getRow() + rowChange - 1);
-    //     } else {
-    //         this.snake.getTail().setCol(this.snake.getTail().getCol() + colChange - 1);
-    //     }
-    //     this.snake.getTail().setLocation();
-    // }
 
     public void run() {
         this.window.animate(() -> {
-            // this.snakeMoving();
             this.snakeMove();
         });
     }
