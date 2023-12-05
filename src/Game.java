@@ -27,7 +27,7 @@ public class Game {
     
     static char direction = 'U';
    
-    private Boolean gameStarted = false;
+    private Boolean inGame = false;
 
     public Game() {
 
@@ -42,16 +42,16 @@ public class Game {
 
         //key events
         this.window.onKeyDown(event -> {
-            if ((event.getKey() == Key.SPACE) && !this.gameStarted) {
-                this.gameStarted = true;
+            if ((event.getKey() == Key.SPACE) && !this.inGame) {
+                this.inGame = true;
                 direction = 'U';
-            } else if ((event.getKey() == Key.UP_ARROW) && !this.gameStarted) {
+            } else if ((event.getKey() == Key.UP_ARROW) && !this.inGame) {
                 direction = 'U';
-            } else if ((event.getKey() == Key.DOWN_ARROW) && !this.gameStarted) {
+            } else if ((event.getKey() == Key.DOWN_ARROW) && !this.inGame) {
                 direction = 'D';
-            } else if ((event.getKey() == Key.LEFT_ARROW) && !this.gameStarted) {
+            } else if ((event.getKey() == Key.LEFT_ARROW) && !this.inGame) {
                 direction = 'L';
-            } else if ((event.getKey() == Key.RIGHT_ARROW) && !this.gameStarted) {
+            } else if ((event.getKey() == Key.RIGHT_ARROW) && !this.inGame) {
                 direction = 'R';
             }
             // Passed Test
@@ -121,7 +121,7 @@ public class Game {
     }
 
     public void reset() {
-        this.gameStarted = false;
+        this.inGame = false;
     }
 
     
