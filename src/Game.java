@@ -54,10 +54,8 @@ public class Game {
             } else if ((event.getKey() == Key.RIGHT_ARROW) && !this.inGame) {
                 direction = 'R';
             }
-            // Passed Test
             System.out.println("Direction: " + direction);
         });
-
     }
 
     public void drawBoard(Cell[][] cells) {
@@ -124,7 +122,6 @@ public class Game {
         this.inGame = false;
     }
 
-    
     public void updateScoreText() {
         this.scoreText.setText("Score: " + Integer.toString(this.board.getScore()));
     }

@@ -51,6 +51,7 @@ public class Board {
         if (this.snake.getHead().getCol() == this.food.getCol() && this.snake.getHead().getRow() == this.food.getRow()) {
             this.score = this.score + 1;
             this.food.resetCell();
+            this.snake.addToTail();
             this.generateFood();
         }
     }

@@ -44,10 +44,7 @@ public class Snake extends GraphicsGroup{
             this.head.setType("snake");
         }
     }
-
-
     
-
     public int getLength(){
         return this.snakeBody.size();
     }
