@@ -33,6 +33,13 @@ public class Game {
 
         this.window = new CanvasWindow("Snake", SCREEN_WIDTH, SCREEN_HEIGHT);
 
+        setupBoard();
+            
+        this.reset();
+        this.run();
+
+        this.setGraphics();
+
         //key events
         this.window.onKeyDown(event -> {
             if ((event.getKey() == Key.SPACE) && !this.gameStarted) {
@@ -50,16 +57,6 @@ public class Game {
             // Passed Test
             System.out.println("Direction: " + direction);
         });
-
-        this.board = new Board();
-        this.drawBoard(this.board.getCells());
-        this.window.add(this.board.getFood());
-        this.snake = this.board.getSnake();
-        this.drawSnake(this.snake.getSnakeBody());
-        this.reset();
-        this.run();
-
-        this.setGraphics();
 
     }
 
@@ -172,6 +169,14 @@ public class Game {
         this.scoreText.setFillColor(Color.WHITE);
         this.window.add(this.scoreText, 50, 45);
 
+    }
+
+    public void setupBoard() {
+        this.board = new Board();
+        this.drawBoard(this.board.getCells());
+        this.window.add(this.board.getFood());
+        this.snake = this.board.getSnake();
+        this.drawSnake(this.snake.getSnakeBody());
     }
 
     public static void main(String[] args) {
