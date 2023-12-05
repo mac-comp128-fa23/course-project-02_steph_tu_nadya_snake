@@ -97,7 +97,7 @@ public class Game {
                 current.setCol(current.getCol() - 1);
                 break;
             case 'D':
-                current.setCol(current.getCol() - 1);
+                current.setCol(current.getCol() + 1);
                 break;
             case 'L':
                 current.setRow(current.getRow() - 1);
