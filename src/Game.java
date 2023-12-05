@@ -25,7 +25,7 @@ public class Game {
     static final int SCREEN_HEIGHT = 600;
     static final int SCREEN_WIDTH = 600;
     
-    static char direction;
+    static char direction = 'U';
    
     private Boolean gameStarted = false;
 
