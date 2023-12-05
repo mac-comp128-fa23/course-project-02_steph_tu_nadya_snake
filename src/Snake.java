@@ -30,7 +30,7 @@ public class Snake extends GraphicsGroup{
     }
 
     public void addToTail(){
-        Cell newTail = new Cell(this.tail.getRow()+1,this.tail.getCol());
+        Cell newTail = new Cell(this.tail.getRow() + 1,this.tail.getCol());
         this.snakeBody.push(newTail);
         this.tail.setNext(newTail);
         newTail.setType("snake");
@@ -44,7 +44,7 @@ public class Snake extends GraphicsGroup{
             this.head.setType("snake");
         }
     }
-    
+
     public int getLength(){
         return this.snakeBody.size();
     }

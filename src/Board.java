@@ -47,15 +47,6 @@ public class Board {
         return this.endGame;
     }
 
-    public void eatFood() {
-        if (this.snake.getHead().getCol() == this.food.getCol() && this.snake.getHead().getRow() == this.food.getRow()) {
-            this.score = this.score + 1;
-            this.food.resetCell();
-            this.snake.addToTail();
-            this.generateFood();
-        }
-    }
-
     public void endGame() {
         Cell head = this.snake.getHead();
         Cell current = this.snake.getHead().getNext();

@@ -91,33 +91,59 @@ public class Game {
             current = next;
             next = current.getNext();
         }
-        
+
+        System.out.println(inGame);
         if (inGame) {
             switch (direction) {
-            case 'U':
-                current.setCol(current.getCol() - 1);
-                break;
-            case 'D':
-                current.setCol(current.getCol() + 1);
-                break;
-            case 'L':
-                current.setRow(current.getRow() - 1);
-                break;
-            case 'R':
-                current.setRow(current.getRow() + 1);
-                break;    
+                case 'U':
+                    current.setCol(current.getCol() - 1);
+                    break;
+                case 'D':
+                    current.setCol(current.getCol() + 1);
+                    break;
+                case 'L':
+                    current.setRow(current.getRow() - 1);
+                    break;
+                case 'R':
+                    current.setRow(current.getRow() + 1);
+                    break;    
+            }
+            current.setLocation();
+
+            //set this here if you want to change speed of snake movement:
+            window.pause(200);
+            endGame();
         }
-        current.setLocation();
+    }
 
-        //set this here if you want to change speed of snake movement:
-        window.pause(100);
-
+    public void endGame() {
+        Cell head = this.snake.getHead();
+        Cell current = this.snake.getHead().getNext();
+        // hits itself
+        while (current != null) {
+            if (head.getCol() == current.getCol() && head.getRow() == current.getRow()) {
+                this.inGame = false;
+            }
+            current = current.getNext();
+        }
+        // hit walls
+        if (head.getCol() > 20 || head.getRow() > 20) {
+            this.inGame = false;
+        }
+        if (head.getCol() < 0 || head.getRow() < 0) {
+            this.inGame = false;
+        }
+        // die
+        if (this.snake.getLength() == 0) {
+            this.inGame = false;
         }
     }
 
     public void run() {
         this.window.animate(() -> {
-            this.snakeMove();
+            //while (this.inGame) {
+                this.snakeMove();
+            //}
         });
     }
 
