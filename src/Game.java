@@ -95,7 +95,6 @@ public class Game {
         }
     
         switch (direction) {
-            case 'D':
             case 'U':
                 current.setCol(current.getCol() - 1);
                 break;
