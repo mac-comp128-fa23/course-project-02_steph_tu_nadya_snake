@@ -42,16 +42,16 @@ public class Game {
 
         //key events
         this.window.onKeyDown(event -> {
-            if ((event.getKey() == Key.SPACE) && !this.inGame) {
+            if ((event.getKey() == Key.SPACE) && !inGame) {
                 this.inGame = true;
                 direction = 'U';
-            } else if ((event.getKey() == Key.UP_ARROW) && !this.inGame) {
+            } else if ((event.getKey() == Key.UP_ARROW) && inGame) {
                 direction = 'U';
-            } else if ((event.getKey() == Key.DOWN_ARROW) && !this.inGame) {
+            } else if ((event.getKey() == Key.DOWN_ARROW) && inGame) {
                 direction = 'D';
-            } else if ((event.getKey() == Key.LEFT_ARROW) && !this.inGame) {
+            } else if ((event.getKey() == Key.LEFT_ARROW) && inGame) {
                 direction = 'L';
-            } else if ((event.getKey() == Key.RIGHT_ARROW) && !this.inGame) {
+            } else if ((event.getKey() == Key.RIGHT_ARROW) && inGame) {
                 direction = 'R';
             }
             System.out.println("Direction: " + direction);
@@ -91,8 +91,9 @@ public class Game {
             current = next;
             next = current.getNext();
         }
-    
-        switch (direction) {
+        
+        if (inGame) {
+            switch (direction) {
             case 'U':
                 current.setCol(current.getCol() - 1);
                 break;
@@ -110,6 +111,8 @@ public class Game {
 
         //set this here if you want to change speed of snake movement:
         window.pause(100);
+
+        }
     }
 
     public void run() {
