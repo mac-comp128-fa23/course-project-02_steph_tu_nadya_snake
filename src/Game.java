@@ -24,13 +24,9 @@ public class Game {
     
     static final int SCREEN_HEIGHT = 600;
     static final int SCREEN_WIDTH = 600;
-    static final int UNIT_SIZE = 25;
-    static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)/UNIT_SIZE;
-
+    
     static char direction;
-    private double[] x = new double[50];
-    private double[] y = new double[75];
-
+   
     private Boolean gameStarted = false;
 
     public Game() {
@@ -110,6 +106,8 @@ public class Game {
                 break;
         }
         current.setLocation();
+
+        //set this here if you want to change speed of snake movement:
         window.pause(200);
 
     }
