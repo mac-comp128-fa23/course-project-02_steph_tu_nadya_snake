@@ -39,10 +39,10 @@ public class Game {
 
         //key events
         this.window.onKeyDown(event -> {
-            // if ((event.getKey() == Key.SPACE) && !this.gameStarted) {
-            //     this.gameStarted = true;
-            //     direction = 'U';
-            if ((event.getKey() == Key.UP_ARROW) && !this.gameStarted) {
+            if ((event.getKey() == Key.SPACE) && !this.gameStarted) {
+                this.gameStarted = true;
+                direction = 'U';
+            } else if ((event.getKey() == Key.UP_ARROW) && !this.gameStarted) {
                 direction = 'U';
             } else if ((event.getKey() == Key.DOWN_ARROW) && !this.gameStarted) {
                 direction = 'D';
@@ -110,6 +110,7 @@ public class Game {
                 break;
         }
         current.setLocation();
+        window.pause(200);
 
     }
 
