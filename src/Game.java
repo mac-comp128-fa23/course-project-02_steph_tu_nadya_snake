@@ -1,11 +1,13 @@
-import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.GraphicsText;
-import edu.macalester.graphics.events.Key;
-import edu.macalester.graphics.FontStyle;
-import edu.macalester.graphics.Image;
-import javax.swing.JOptionPane;
-import java.util.LinkedList;
 import java.awt.Color;
+import java.util.LinkedList;
+
+import javax.swing.JOptionPane;
+
+import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.FontStyle;
+import edu.macalester.graphics.GraphicsText;
+import edu.macalester.graphics.Image;
+import edu.macalester.graphics.events.Key;
 
 public class Game {
 
@@ -120,14 +122,33 @@ public class Game {
         // hit walls
         Cell head = this.snake.getHead();
         
-        //  hitting walls
-        boolean hitWalls = head.getX() < 75 || head.getX() > 500 || head.getY() < 100 || head.getY() > 525;
+        // //  hitting walls
+        // boolean hitWalls = head.getX() < 75 || head.getX() > 500 || head.getY() < 100 || head.getY() > 525;
 
-        // snake length is zero
-        boolean snakeLengthZero = this.snake.getLength() == 0;
+        // // snake length is zero
+        // boolean snakeLengthZero = this.snake.getLength() == 0;
 
-        if (hitWalls || snakeLengthZero) {
-            this.handleGameOver();
+        // if (hitWalls || snakeLengthZero) {
+        //     this.handleGameOver();
+        // }
+        if (head.getX() < 75 || head.getX() > 500) {
+            this.inGame = false;
+            window.add(losingText);
+            window.add(losingText2);
+            window.add(losingImage);
+        }
+        if (head.getY() < 100 || head.getY() > 525) {
+            this.inGame = false;
+            window.add(losingText);
+            window.add(losingText2);
+            window.add(losingImage);
+        }
+        // die
+        if (this.snake.getLength() == 0) {
+            this.inGame = false;
+            window.add(losingText);
+            window.add(losingText2);
+            window.add(losingImage);
         }
     }
 
