@@ -114,7 +114,7 @@ public class Game {
             current.setLocation();
 
             //set this here if you want to change speed of snake movement:
-            this.window.pause(120);
+            this.window.pause(100);
         }
     }
 
