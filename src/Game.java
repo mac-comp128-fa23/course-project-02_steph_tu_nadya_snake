@@ -117,14 +117,14 @@ public class Game {
 
     public void endGame() {
         // hit walls
-        Cell head = this.snake.getHead();
-        if (head.getX() <= 100 || head.getX() >= 475) {
+        Cell tail = this.snake.getTail();
+        if (tail.getX() <= 50 || tail.getX() >= 525) {
             this.inGame = false;
             window.add(losingText);
             window.add(losingText2);
             window.add(losingImage);
         }
-        if (head.getY() <= 125 || head.getY() >= 500) {
+        if (tail.getY() <= 75 || tail.getY() >= 550) {
             this.inGame = false;
             window.add(losingText);
             window.add(losingText2);
@@ -145,6 +145,7 @@ public class Game {
         if (head.getX() - food.getX() == 0 && head.getY() - food.getY() == 0) {
             this.board.generateFood();
             this.score++;
+            updateScoreText();
         }
     }
 
@@ -206,6 +207,11 @@ public class Game {
         this.window.add(this.board.getFood());
         this.snake = this.board.getSnake();
         this.drawSnake(this.snake.getSnakeBody());
+    }
+
+    public void reset() {
+        this.score = 0;
+        
     }
 
     public static void main(String[] args) {
