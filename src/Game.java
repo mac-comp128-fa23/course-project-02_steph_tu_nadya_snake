@@ -12,6 +12,14 @@ public class Game {
     static final int SCREEN_WIDTH = 600;
     private CanvasWindow window;
 
+    private Board board;
+    private Snake snake;
+
+    public final Color GRID1 = new Color(248,251,247);
+    public final Color GRID2 = new Color(246,238,248);
+    public final Color SNAKE_HEAD = new Color(127,206,131);
+    public final Color SNAKE_COLOR = new Color(176,230,175);
+
     private GraphicsText title;
     private GraphicsText authorText;
     private GraphicsText description;
@@ -19,14 +27,6 @@ public class Game {
     private GraphicsText losingText;
     private GraphicsText losingText2;
     private Image losingImage;
-
-    public final Color GRID1 = new Color(248,251,247);
-    public final Color GRID2 = new Color(246,238,248);
-    private Board board;
-
-    public final Color SNAKE_HEAD = new Color(127,206,131);
-    public final Color SNAKE_COLOR = new Color(176,230,175);
-    private Snake snake;
     
     static char direction = 'U';
     private Boolean inGame = false;
@@ -149,6 +149,7 @@ public class Game {
     }
 
     public void run() {
+        SoundHandler.runMusic("res/song.wav");
         this.window.animate(() -> {
             this.snakeMove();
         });
@@ -197,6 +198,7 @@ public class Game {
         this.losingImage.setMaxWidth(200);
         this.losingImage.setImagePath("cat3.jpeg");
         this.losingImage.setCenter(300, 355);
+
 
     }
 
