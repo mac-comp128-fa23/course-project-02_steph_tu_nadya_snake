@@ -245,7 +245,7 @@ public class Game {
         this.losingImage = new Image(0, 0);
         this.losingImage.setMaxHeight(200);
         this.losingImage.setMaxWidth(200);
-        this.losingImage.setImagePath("cat3.jpeg");
+        this.losingImage.setImagePath("dead.jpg");
         this.losingImage.setCenter(300, 355);
 
         this.restartText = new GraphicsText("press 'shift' to restart");
