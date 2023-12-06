@@ -122,41 +122,25 @@ public class Game {
         // hit walls
         Cell head = this.snake.getHead();
         
-        // //  hitting walls
-        // boolean hitWalls = head.getX() < 75 || head.getX() > 500 || head.getY() < 100 || head.getY() > 525;
+        //  hitting walls
+        boolean hitWalls = head.getX() < 75 || head.getX() > 500 || head.getY() < 100 || head.getY() > 525;
 
-        // // snake length is zero
-        // boolean snakeLengthZero = this.snake.getLength() == 0;
+        // snake length is zero
+        boolean snakeLengthZero = this.snake.getLength() == 0;
 
-        // if (hitWalls || snakeLengthZero) {
-        //     this.handleGameOver();
-        // }
-        if (head.getX() < 75 || head.getX() > 500) {
-            this.inGame = false;
+        if (hitWalls || snakeLengthZero) {
             window.add(losingText);
             window.add(losingText2);
             window.add(losingImage);
+            window.draw();
+            this.handleGameOver();
         }
-        if (head.getY() < 100 || head.getY() > 525) {
-            this.inGame = false;
-            window.add(losingText);
-            window.add(losingText2);
-            window.add(losingImage);
-        }
-        // die
-        if (this.snake.getLength() == 0) {
-            this.inGame = false;
-            window.add(losingText);
-            window.add(losingText2);
-            window.add(losingImage);
-        }
+        
     }
 
     private void handleGameOver() {
-        // this.window.add(this.losingText);
         this.inGame = false;
-        int earnedPoints = 0; // define a method to calculate points
-        boolean playAgain = this.showGameOverDialog(earnedPoints);
+        boolean playAgain = this.showGameOverDialog(score);
         if (playAgain) {
             System.out.println("play again");
             this.reset();
@@ -167,20 +151,11 @@ public class Game {
         }
     }
     
-
-    // private int calculatePoints() {
-        
-    //     // You need to implement the logic to calculate points based on the game state
-    //     // For now, let's assume you have a variable named points
-    //     return points;
-    // }
-    
     private boolean showGameOverDialog(int earnedPoints) {
         return JOptionPane.showConfirmDialog(null,
                 "Game Over! You earned " + earnedPoints + " points!\nPlay again?",
                 "Game Over!", JOptionPane.YES_NO_OPTION, 0) == 0;
     }
-
 
     public void reset() {
         this.inGame = false;
