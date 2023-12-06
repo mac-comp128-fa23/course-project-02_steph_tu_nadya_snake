@@ -49,13 +49,21 @@ public class Game {
             if ((event.getKey() == Key.SPACE) && !this.inGame) {
                 this.inGame = true;
                 direction = 'U';
-            } else if ((event.getKey() == Key.UP_ARROW || event.getKey() == Key.W) && (this.inGame) && (direction != 'D')) {
+
+            } else if ((event.getKey() == Key.UP_ARROW || event.getKey() == Key.W) 
+            && (this.inGame) && (direction != 'D')) {
                 direction = 'U';
-            } else if ((event.getKey() == Key.DOWN_ARROW || event.getKey() == Key.S) && (this.inGame) && (direction != 'U')) {
+
+            } else if ((event.getKey() == Key.DOWN_ARROW || event.getKey() == Key.S) 
+            && (this.inGame) && (direction != 'U')) {
                 direction = 'D';
-            } else if ((event.getKey() == Key.LEFT_ARROW || event.getKey() == Key.A) && this.inGame) {
+
+            } else if ((event.getKey() == Key.LEFT_ARROW || event.getKey() == Key.A) 
+            && this.inGame) {
                 direction = 'L';
-            } else if ((event.getKey() == Key.RIGHT_ARROW || event.getKey() == Key.D) && this.inGame) {
+
+            } else if ((event.getKey() == Key.RIGHT_ARROW || event.getKey() == Key.D) 
+            && this.inGame) {
                 direction = 'R';
             }
         });
@@ -131,7 +139,8 @@ public class Game {
         Cell head = this.snake.getHead();
         
         //  hitting walls
-        boolean hitWalls = head.getX() < 75 || head.getX() > 500 || head.getY() < 100 || head.getY() > 525;
+        boolean hitWalls = head.getX() < 75 || head.getX() > 500 || 
+        head.getY() < 100 || head.getY() > 525;
 
         // snake length is zero
         boolean snakeLengthZero = this.snake.getLength() == 0;
