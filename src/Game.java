@@ -35,11 +35,9 @@ public class Game {
         this.window = new CanvasWindow("Snake", SCREEN_WIDTH, SCREEN_HEIGHT);
 
         setupBoard();
-            
-        this.reset();
-        this.run();
-
         this.setGraphics();
+
+        //this.reset();
 
         //key events
         this.window.onKeyDown(event -> {
@@ -57,6 +55,9 @@ public class Game {
             }
             System.out.println("Direction: " + direction);
         });
+
+        this.run();
+
     }
 
     public void drawBoard(Cell[][] cells) {
@@ -85,16 +86,15 @@ public class Game {
 
     public void snakeMove() { 
 
-        Cell current = this.snake.getHead();
-        Cell next = current.getNext();
-        while (next != null) {
-            current.setPosition(next.getX(), next.getY());
-            current = next;
-            next = current.getNext();
-        }
-
         endGame();
         if (inGame) {
+            Cell current = this.snake.getHead();
+            Cell next = current.getNext();
+            while (next != null) {
+                current.setPosition(next.getX(), next.getY());
+                current = next;
+                next = current.getNext();
+            }
             switch (direction) {
                 case 'U':
                     current.setCol(current.getCol() - 1);
@@ -148,7 +148,7 @@ public class Game {
     }
 
     public void updateScoreText() {
-        this.scoreText.setText("Score: " + Integer.toString(this.board.getScore()));
+        this.scoreText.setText("Score: " + Integer.toString(this.score));
     }
 
     public void setGraphics() {
@@ -170,7 +170,7 @@ public class Game {
         this.description.setFillColor(Color.WHITE);
         this.window.add(this.description, 50, 68);
 
-        this.scoreText = new GraphicsText("Score: " + Integer.toString(this.board.getScore()));
+        this.scoreText = new GraphicsText("Score: " + Integer.toString(this.score));
         this.scoreText.setFont("Georgia", FontStyle.BOLD, 24);
         this.scoreText.setFillColor(Color.WHITE);
         this.window.add(this.scoreText, 50, 45);
