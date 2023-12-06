@@ -48,7 +48,7 @@ public class Board {
     }
 
     public void generateFood(){
-        this.food.resetCell();
+        //this.food.resetCell();
         boolean newFood = false;
         while (!newFood && !this.endGame) {
             int row = (int) (Math.random() * this.ROW);
