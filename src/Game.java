@@ -27,9 +27,9 @@ public class Game {
     private GraphicsText scoreText;
     private GraphicsText losingText;
     private GraphicsText losingText2;
-    private Image losingImage;
-
     private GraphicsText restartText;
+
+    private Image losingImage;
 
     private Rectangle losingRectangle;
 
