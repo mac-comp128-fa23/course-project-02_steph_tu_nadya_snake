@@ -4,6 +4,9 @@ import edu.macalester.graphics.events.Key;
 import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.Image;
 import java.util.LinkedList;
+
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 
 public class Game {
@@ -36,21 +39,21 @@ public class Game {
 
         this.window = new CanvasWindow("Snake", SCREEN_WIDTH, SCREEN_HEIGHT);
 
-        setupBoard();
+        this.setupBoard();
         this.setGraphics();
 
         //key events
         this.window.onKeyDown(event -> {
-            if ((event.getKey() == Key.SPACE) && !inGame) {
+            if ((event.getKey() == Key.SPACE) && !this.inGame) {
                 this.inGame = true;
                 direction = 'U';
-            } else if ((event.getKey() == Key.UP_ARROW) && (inGame) && (direction != 'D')) {
+            } else if ((event.getKey() == Key.UP_ARROW) && (this.inGame) && (direction != 'D')) {
                 direction = 'U';
-            } else if ((event.getKey() == Key.DOWN_ARROW) && (inGame) && (direction != 'U')) {
+            } else if ((event.getKey() == Key.DOWN_ARROW) && (this.inGame) && (direction != 'U')) {
                 direction = 'D';
-            } else if ((event.getKey() == Key.LEFT_ARROW) && inGame) {
+            } else if ((event.getKey() == Key.LEFT_ARROW) && this.inGame) {
                 direction = 'L';
-            } else if ((event.getKey() == Key.RIGHT_ARROW) && inGame) {
+            } else if ((event.getKey() == Key.RIGHT_ARROW) && this.inGame) {
                 direction = 'R';
             }
             System.out.println("Direction: " + direction);
@@ -84,9 +87,9 @@ public class Game {
     }
 
     public void snakeMove() { 
-        eatFood();
-        endGame();
-        if (inGame) {
+        this.eatFood();
+        this.endGame();
+        if (this.inGame) {
             Cell current = this.snake.getHead();
             Cell next = current.getNext();
             while (next != null) {
@@ -111,32 +114,83 @@ public class Game {
             current.setLocation();
 
             //set this here if you want to change speed of snake movement:
-            window.pause(120);
+            this.window.pause(120);
         }
     }
 
     public void endGame() {
         // hit walls
-        Cell tail = this.snake.getTail();
-        if (tail.getX() <= 50 || tail.getX() >= 525) {
-            this.inGame = false;
-            window.add(losingText);
-            window.add(losingText2);
-            window.add(losingImage);
+        Cell head = this.snake.getHead();
+        
+        //  hitting walls
+        boolean hitWalls = head.getX() <= 100 || head.getX() >= 475 || head.getY() <= 125 || head.getY() >= 500;
+
+        // snake length is zero
+        boolean snakeLengthZero = this.snake.getLength() == 0;
+
+        if (hitWalls || snakeLengthZero) {
+            this.handleGameOver();
         }
-        if (tail.getY() <= 75 || tail.getY() >= 550) {
+    }
+        // Cell head = this.snake.getHead();
+        // if (head.getX() <= 100 || head.getX() >= 475) {
+        //     this.inGame = false;
+        //     this.window.add(this.losingText);
+        //     this.window.add(this.losingText2);
+        //     this.window.add(this.losingImage);
+        // }
+        // if (head.getY() <= 125 || head.getY() >= 500) {
+        //     this.inGame = false;
+        //     this.window.add(this.losingText);
+        //     this.window.add(this.losingText2);
+        //     this.window.add(this.losingImage);
+        // }
+        // // die
+        // if (this.snake.getLength() == 0) {
+        //     this.inGame = false;
+        //     this.window.add(this.losingText);
+        //     this.window.add(this.losingText2);
+        //     this.window.add(this.losingImage);
+        // }
+    // }
+
+
+    private void handleGameOver() {
+        // this.window.add(this.losingText);
+        this.inGame = false;
+        int earnedPoints = 0; // define a method to calculate points
+        boolean playAgain = this.showGameOverDialog(earnedPoints);
+        if (playAgain) {
+            System.out.println("play again");
+            this.reset();
+        } else {
             this.inGame = false;
-            window.add(losingText);
-            window.add(losingText2);
-            window.add(losingImage);
+            this.window.add(this.losingText);
+            this.window.closeWindow();
         }
-        // die
-        if (this.snake.getLength() == 0) {
-            this.inGame = false;
-            window.add(losingText);
-            window.add(losingText2);
-            window.add(losingImage);
-        }
+    }
+    
+
+    // private int calculatePoints() {
+        
+    //     // You need to implement the logic to calculate points based on the game state
+    //     // For now, let's assume you have a variable named points
+    //     return points;
+    // }
+    
+    private boolean showGameOverDialog(int earnedPoints) {
+        return JOptionPane.showConfirmDialog(null,
+                "Game Over! You earned " + earnedPoints + " points!\nPlay again?",
+                "Game Over!", JOptionPane.YES_NO_OPTION, 0) == 0;
+    }
+
+
+    public void reset() {
+        this.inGame = false;
+        this.score = 0;
+        this.window.removeAll();  // Clear the window before setting up new graphics
+        this.setupBoard();
+        this.setGraphics();
     }
 
     public void eatFood() {
@@ -149,7 +203,7 @@ public class Game {
             this.snake.addToTail();
             this.snake.getTail().setFillColor(this.SNAKE_COLOR); 
             this.snake.getTail().setStrokeColor(new Color(199,237,198));
-            this.window.add(this.snake.getTail());       
+            this.window.add(this.snake.getTail());
         }
     }
 
@@ -203,8 +257,6 @@ public class Game {
         this.losingImage.setMaxWidth(200);
         this.losingImage.setImagePath("cat3.jpeg");
         this.losingImage.setCenter(300, 355);
-
-
     }
 
     public void setupBoard() {
@@ -213,11 +265,6 @@ public class Game {
         this.window.add(this.board.getFood());
         this.snake = this.board.getSnake();
         this.drawSnake(this.snake.getSnakeBody());
-    }
-
-    public void reset() {
-        this.score = 0;
-        
     }
 
     public static void main(String[] args) {
