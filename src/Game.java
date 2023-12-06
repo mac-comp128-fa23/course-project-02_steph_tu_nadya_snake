@@ -1,22 +1,16 @@
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsText;
-import edu.macalester.graphics.Image;
 import edu.macalester.graphics.events.Key;
 import edu.macalester.graphics.FontStyle;
+import edu.macalester.graphics.Image;
 import java.util.LinkedList;
 import java.awt.Color;
 
 public class Game {
 
+    static final int SCREEN_HEIGHT = 600;
+    static final int SCREEN_WIDTH = 600;
     private CanvasWindow window;
-
-    private Board board;
-    private Snake snake;
-
-    public final Color GRID1 = new Color(248,251,247);
-    public final Color GRID2 = new Color(246,238,248);
-    public final Color SNAKE_HEAD = new Color(127,206,131);
-    public final Color SNAKE_COLOR = new Color(176,230,175);
 
     private GraphicsText title;
     private GraphicsText authorText;
@@ -24,16 +18,18 @@ public class Game {
     private GraphicsText scoreText;
     private GraphicsText losingText;
     private GraphicsText losingText2;
-
     private Image losingImage;
-    
-    static final int SCREEN_HEIGHT = 600;
-    static final int SCREEN_WIDTH = 600;
+
+    public final Color GRID1 = new Color(248,251,247);
+    public final Color GRID2 = new Color(246,238,248);
+    private Board board;
+
+    public final Color SNAKE_HEAD = new Color(127,206,131);
+    public final Color SNAKE_COLOR = new Color(176,230,175);
+    private Snake snake;
     
     static char direction = 'U';
-   
     private Boolean inGame = false;
-    private Boolean gameLost = false;
     private int score = 0;
 
     public Game() {
@@ -42,8 +38,6 @@ public class Game {
 
         setupBoard();
         this.setGraphics();
-
-        //this.reset();
 
         //key events
         this.window.onKeyDown(event -> {
@@ -63,7 +57,6 @@ public class Game {
         });
 
         this.run();
-
     }
 
     public void drawBoard(Cell[][] cells) {
@@ -91,7 +84,7 @@ public class Game {
     }
 
     public void snakeMove() { 
-
+        eatFood();
         endGame();
         if (inGame) {
             Cell current = this.snake.getHead();
@@ -119,12 +112,7 @@ public class Game {
 
             //set this here if you want to change speed of snake movement:
             window.pause(120);
-        } 
-        // else {
-        //     //lose
-        //     window.pause(120);
-        //     endGame();
-        // }
+        }
     }
 
     public void endGame() {
@@ -151,15 +139,19 @@ public class Game {
         }
     }
 
+    public void eatFood() {
+        Cell head = this.snake.getHead();
+        Food food = this.board.getFood();
+        if (head.getX() - food.getX() == 0 && head.getY() - food.getY() == 0) {
+            this.board.generateFood();
+            this.score++;
+        }
+    }
+
     public void run() {
         this.window.animate(() -> {
             this.snakeMove();
         });
-    }
-
-    public void reset() {
-        this.inGame = false;
-        this.score = 0;
     }
 
     public void updateScoreText() {

@@ -4,7 +4,6 @@ import java.awt.Color;
 public class Cell extends Rectangle {
     private int row;
     private int col;
-    private String type;
     private Cell next;
 
     public final Color GRID1 = new Color(248,251,247);
@@ -31,14 +30,6 @@ public class Cell extends Rectangle {
 
     public void setCol(int col) {
         this.col = col;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public Cell getNext() {

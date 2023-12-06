@@ -18,14 +18,12 @@ public class Snake extends GraphicsGroup{
         this.head = new Cell(this.cells.length / 2, this.cells[0].length / 2);
         this.tail = this.head;
         this.snakeBody.push(this.head);
-        cells[this.head.getRow()][this.head.getCol()].setType("snake");
 
         for (int i = 0; i < initialLength - 1; i++) {
             Cell newTail = new Cell(this.tail.getRow(), this.tail.getCol() - 1);
             this.tail.setNext(newTail);
             this.snakeBody.push(newTail);
             this.tail = newTail;
-            this.cells[this.tail.getRow()][this.tail.getCol()].setType("snake");
         }
     }
 
@@ -33,7 +31,6 @@ public class Snake extends GraphicsGroup{
         Cell newTail = new Cell(this.tail.getRow() + 1,this.tail.getCol());
         this.snakeBody.push(newTail);
         this.tail.setNext(newTail);
-        newTail.setType("snake");
     }
 
     public void removeFromTail(){
@@ -41,7 +38,6 @@ public class Snake extends GraphicsGroup{
             this.snakeBody.pop();
             Cell newTail = this.snakeBody.peek();
             this.tail.setNext(newTail);
-            this.head.setType("snake");
         }
     }
 
