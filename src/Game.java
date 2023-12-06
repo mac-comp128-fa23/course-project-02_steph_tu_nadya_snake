@@ -21,6 +21,7 @@ public class Game {
     private GraphicsText authorText;
     private GraphicsText description;
     private GraphicsText scoreText;
+    private GraphicsText losingText;
     
     static final int SCREEN_HEIGHT = 600;
     static final int SCREEN_WIDTH = 600;
@@ -126,13 +127,16 @@ public class Game {
         Cell head = this.snake.getHead();
         if (head.getX() <= 100 || head.getX() >= 475) {
             this.inGame = false;
+            window.add(losingText);
         }
         if (head.getY() <= 125 || head.getY() >= 500) {
             this.inGame = false;
+            window.add(losingText);
         }
         // die
         if (this.snake.getLength() == 0) {
             this.inGame = false;
+            window.add(losingText);
         }
     }
 
@@ -174,6 +178,11 @@ public class Game {
         this.scoreText.setFont("Georgia", FontStyle.BOLD, 24);
         this.scoreText.setFillColor(Color.WHITE);
         this.window.add(this.scoreText, 50, 45);
+
+        this.losingText = new GraphicsText("GAME OVER!");
+        this.losingText.setFont("Georgia", FontStyle.BOLD, 32);
+        this.losingText.setFillColor(new Color(196,186,244));
+        this.losingText.setCenter(300,300);
 
     }
 
