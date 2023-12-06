@@ -47,30 +47,8 @@ public class Board {
         return this.endGame;
     }
 
-    public void endGame() {
-        Cell head = this.snake.getHead();
-        Cell current = this.snake.getHead().getNext();
-        // hits itself
-        while (current != null) {
-            if (head.getCol() == current.getCol() && head.getRow() == current.getRow()) {
-                this.endGame = true;
-            }
-            current = current.getNext();
-        }
-        // hit walls
-        if (head.getCol() > 20 || head.getRow() > 20) {
-            this.endGame = true;
-        }
-        if (head.getCol() < 0 || head.getRow() < 0) {
-            this.endGame = true;
-        }
-        // die
-        if (this.snake.getLength() == 0) {
-            this.endGame = true;
-        }
-    }
-
     public void generateFood(){
+        this.food.resetCell();
         boolean newFood = false;
         while (!newFood && !this.endGame) {
             int row = (int) (Math.random() * this.ROW);

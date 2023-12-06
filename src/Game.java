@@ -28,6 +28,7 @@ public class Game {
     static char direction = 'U';
    
     private Boolean inGame = false;
+    private int score = 0;
 
     public Game() {
 
@@ -92,7 +93,7 @@ public class Game {
             next = current.getNext();
         }
 
-        System.out.println(inGame);
+        endGame();
         if (inGame) {
             switch (direction) {
                 case 'U':
@@ -112,25 +113,18 @@ public class Game {
 
             //set this here if you want to change speed of snake movement:
             window.pause(200);
-            endGame();
+        } else {
+            //lose
         }
     }
 
     public void endGame() {
-        Cell head = this.snake.getHead();
-        Cell current = this.snake.getHead().getNext();
-        // hits itself
-        while (current != null) {
-            if (head.getCol() == current.getCol() && head.getRow() == current.getRow()) {
-                this.inGame = false;
-            }
-            current = current.getNext();
-        }
         // hit walls
-        if (head.getCol() > 20 || head.getRow() > 20) {
+        Cell head = this.snake.getHead();
+        if (head.getX() < 100 || head.getX() > 475) {
             this.inGame = false;
         }
-        if (head.getCol() < 0 || head.getRow() < 0) {
+        if (head.getY() < 125 || head.getY() > 500) {
             this.inGame = false;
         }
         // die
@@ -141,14 +135,13 @@ public class Game {
 
     public void run() {
         this.window.animate(() -> {
-            //while (this.inGame) {
-                this.snakeMove();
-            //}
+            this.snakeMove();
         });
     }
 
     public void reset() {
         this.inGame = false;
+        this.score = 0;
     }
 
     public void updateScoreText() {
