@@ -203,7 +203,7 @@ public class Game {
         this.losingImage = new Image(0, 0);
         this.losingImage.setMaxHeight(200);
         this.losingImage.setMaxWidth(200);
-        this.losingImage.setImagePath("cat.png");
+        this.losingImage.setImagePath("cat3.jpeg");
         this.losingImage.setCenter(300, 355);
 
     }
