@@ -1,8 +1,6 @@
 import java.awt.Color;
 import java.util.LinkedList;
-
 import javax.swing.JOptionPane;
-
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
@@ -88,6 +86,7 @@ public class Game {
 
     public void snakeMove() { 
         this.eatFood();
+        this.hitRock();
         this.endGame();
         if (this.inGame) {
             Cell current = this.snake.getTail();
@@ -166,9 +165,9 @@ public class Game {
     }
 
     public void eatFood() {
-        Cell tail = this.snake.getTail();
+        Cell head = this.snake.getHead();
         Food food = this.board.getFood();
-        if (tail.getX() - food.getX() == 0 && tail.getY() - food.getY() == 0) {
+        if (head.getX() - food.getX() == 0 && head.getY() - food.getY() == 0) {
             this.board.generateFood();
             this.score++;
             updateScoreText();    
@@ -176,6 +175,18 @@ public class Game {
             this.snake.getTail().setFillColor(this.SNAKE_COLOR); 
             this.snake.getTail().setStrokeColor(new Color(199,237,198));
             this.window.add(this.snake.getTail());
+        }
+    }
+
+    public void hitRock() {
+        Cell head = this.snake.getHead();
+        Rock rock = this.board.getRock();
+        if (head.getX() == rock.getX() && head.getY() == rock.getY()) {
+            this.board.generateRock();
+            this.score--;
+            updateScoreText();
+            window.remove(this.snake.getTail());
+            this.snake.removeFromTail();
         }
     }
 
@@ -235,6 +246,7 @@ public class Game {
         this.board = new Board();
         this.drawBoard(this.board.getCells());
         this.window.add(this.board.getFood());
+        this.window.add(this.board.getRock());
         this.snake = this.board.getSnake();
         this.drawSnake(this.snake.getSnakeBody());
     }

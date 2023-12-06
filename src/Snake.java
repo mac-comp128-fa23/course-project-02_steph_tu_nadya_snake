@@ -36,9 +36,8 @@ public class Snake extends GraphicsGroup{
 
     public void removeFromTail(){
         if (this.snakeBody.size() >= 1) {
+            this.tail = this.tail.getPrevious();
             this.snakeBody.pop();
-            Cell newTail = this.snakeBody.peek();
-            this.tail.setNext(newTail);
         }
     }
 
