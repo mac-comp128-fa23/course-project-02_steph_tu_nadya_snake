@@ -45,9 +45,9 @@ public class Game {
             if ((event.getKey() == Key.SPACE) && !inGame) {
                 this.inGame = true;
                 direction = 'U';
-            } else if ((event.getKey() == Key.UP_ARROW) && inGame) {
+            } else if ((event.getKey() == Key.UP_ARROW) && (inGame) && (direction != 'D')) {
                 direction = 'U';
-            } else if ((event.getKey() == Key.DOWN_ARROW) && inGame) {
+            } else if ((event.getKey() == Key.DOWN_ARROW) && (inGame) && (direction != 'U')) {
                 direction = 'D';
             } else if ((event.getKey() == Key.LEFT_ARROW) && inGame) {
                 direction = 'L';
