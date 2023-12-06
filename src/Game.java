@@ -180,7 +180,7 @@ public class Game {
     }
 
     public void run() {
-        SoundHandler.runMusic("res/ditto.wav");
+        SoundHandler.runMusic("res/down.wav");
         this.window.animate(() -> {
             this.snakeMove();
         });

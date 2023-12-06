@@ -18,8 +18,8 @@ public class SoundHandler {
 
             //tell algorithm to open the clip
             clip.open(inputStream);
-            
-            clip.start();
+
+            clip.loop(3);
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException e) {
