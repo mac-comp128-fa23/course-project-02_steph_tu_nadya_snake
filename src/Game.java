@@ -4,6 +4,7 @@ import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Image;
+import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.events.Key;
 
 public class Game {
@@ -30,7 +31,8 @@ public class Game {
 
     private GraphicsText restartText;
 
-    
+    private Rectangle losingRectangle;
+
     static char direction = 'U';
     private Boolean inGame = false;
     private int score = 0;
@@ -146,6 +148,7 @@ public class Game {
             } 
         }
         if (hitWalls || snakeLengthZero|| snakeHits || score) {
+            this.window.add(this.losingRectangle);
             this.window.add(this.losingText);
             this.window.add(this.losingText2);
             this.window.add(this.losingImage);
@@ -231,6 +234,11 @@ public class Game {
         this.scoreText.setFont("Georgia", FontStyle.BOLD, 24);
         this.scoreText.setFillColor(Color.WHITE);
         this.window.add(this.scoreText, 50, 45);
+
+        this.losingRectangle = new Rectangle(0, 0, 350, 350);
+        this.losingRectangle.setCenter(300, 330);
+        this.losingRectangle.setFillColor(new Color(208,255,240));
+        this.losingRectangle.setStrokeColor(new Color(208,255,240));
 
         this.losingText = new GraphicsText("GAME OVER!");
         this.losingText.setFont("Georgia", FontStyle.BOLD, 32);
