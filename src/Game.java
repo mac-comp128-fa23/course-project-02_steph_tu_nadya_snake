@@ -30,7 +30,8 @@ public class Game {
     private GraphicsText losingText2;
     private Image losingImage;
 
-    private Button replayButton;
+    private GraphicsText restartText;
+
     
     static char direction = 'U';
     private Boolean inGame = false;
@@ -58,6 +59,12 @@ public class Game {
                 direction = 'R';
             }
             System.out.println("Direction: " + direction);
+        });
+
+        this.window.onKeyDown(event -> {
+            if (event.getKey() == Key.SHIFT && (!this.inGame)) {
+                this.reset();
+            }
         });
 
         this.run();
@@ -130,43 +137,25 @@ public class Game {
         // snake length is zero
         boolean snakeLengthZero = this.snake.getLength() == 0;
 
-      // snake hits self
-      boolean snakeHits = false;
-      for(Cell bodyPart: this.snake.getSnakeBody()){
-          if(head!= bodyPart && head.getX() == bodyPart.getX() || head.getY() == bodyPart.getY()){
-              snakeHits = true;
-              break;
-          }
-      }
-      
-      if (hitWalls || snakeLengthZero|| snakeHits) {
-          this.window.add(this.losingText);
-          this.window.add(this.losingText2);
-          this.window.add(this.losingImage);
-          this.window.draw();
-          this.handleGameOver();
-      }
+        // snake hits self
+        boolean snakeHits = false;
+        for(Cell bodyPart: this.snake.getSnakeBody()){
+            if(head!= bodyPart && head.getX() == bodyPart.getX() && head.getY() == bodyPart.getY()){
+                snakeHits = true;
+                break;
+            } 
+    }
+    if (hitWalls || snakeLengthZero|| snakeHits) {
+        this.window.add(this.losingText);
+        this.window.add(this.losingText2);
+        this.window.add(this.losingImage);
+        this.window.add(this.restartText);
+        this.window.draw();
+        this.inGame = false;
+    }
         
     }
 
-    private void handleGameOver() {
-        this.inGame = false;
-        boolean playAgain = this.showGameOverDialog(this.score);
-        if (playAgain) {
-            System.out.println("play again");
-            this.reset();
-        } else {
-            this.inGame = false;
-            this.window.add(this.losingText);
-            this.window.closeWindow();
-        }
-    }
-    
-    private boolean showGameOverDialog(int earnedPoints) {
-        return JOptionPane.showConfirmDialog(null,
-                "Game Over! You earned " + earnedPoints + " points!\nPlay again?",
-                "Game Over!", JOptionPane.YES_NO_OPTION, 0) == 0;
-    }
 
     public void reset() {
         this.inGame = false;
@@ -196,8 +185,8 @@ public class Game {
         if (head.getX() == rock.getX() && head.getY() == rock.getY()) {
             this.board.generateRock();
             this.score--;
-            updateScoreText();
-            window.remove(this.snake.getTail());
+            this.updateScoreText();
+            this.window.remove(this.snake.getTail());
             this.snake.removeFromTail();
         }
     }
@@ -217,10 +206,10 @@ public class Game {
 
         this.window.setBackground(new Color(244,197,227));
 
-        this.replayButton = new Button("restart game");
-        this.replayButton.onClick(this.reset());
-        this.replayButton.setCenter(300, 55);
-        this.window.add(this.replayButton);
+        // this.replayButton = new Button("restart game");
+        // // this.replayButton.onClick(this.reset());
+        // this.replayButton.setCenter(300, 55);
+        // this.window.add(this.replayButton);
 
         this.title = new GraphicsText("Snake!");
         this.title.setFont("Georgia", FontStyle.BOLD, 32);
@@ -257,6 +246,11 @@ public class Game {
         this.losingImage.setMaxWidth(200);
         this.losingImage.setImagePath("cat3.jpeg");
         this.losingImage.setCenter(300, 355);
+
+        this.restartText = new GraphicsText("press 'shift' to restart");
+        this.restartText.setFont("Georgia", FontStyle.PLAIN, 18);
+        this.restartText.setFillColor(new Color(196, 186, 244));
+        this.restartText.setCenter(300, 470);
     }
 
     public void setupBoard() {
