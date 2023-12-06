@@ -134,6 +134,9 @@ public class Game {
         // snake length is zero
         boolean snakeLengthZero = this.snake.getLength() == 0;
 
+        // score is negative
+        boolean score = this.score < 0;
+
         // snake hits self
         boolean snakeHits = false;
         for(Cell bodyPart: this.snake.getSnakeBody()){
@@ -142,7 +145,7 @@ public class Game {
                 break;
             } 
         }
-        if (hitWalls || snakeLengthZero|| snakeHits) {
+        if (hitWalls || snakeLengthZero|| snakeHits || score) {
             this.window.add(this.losingText);
             this.window.add(this.losingText2);
             this.window.add(this.losingImage);
