@@ -156,7 +156,6 @@ public class Game {
         
     }
 
-
     public void reset() {
         this.inGame = false;
         this.score = 0;
@@ -205,11 +204,6 @@ public class Game {
     public void setGraphics() {
 
         this.window.setBackground(new Color(244,197,227));
-
-        // this.replayButton = new Button("restart game");
-        // // this.replayButton.onClick(this.reset());
-        // this.replayButton.setCenter(300, 55);
-        // this.window.add(this.replayButton);
 
         this.title = new GraphicsText("Snake!");
         this.title.setFont("Georgia", FontStyle.BOLD, 32);
