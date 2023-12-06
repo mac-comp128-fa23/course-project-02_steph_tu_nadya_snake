@@ -8,6 +8,7 @@ import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.events.Key;
+import edu.macalester.graphics.ui.Button;
 
 public class Game {
 
@@ -30,6 +31,8 @@ public class Game {
     private GraphicsText losingText;
     private GraphicsText losingText2;
     private Image losingImage;
+
+    private Button replayButton;
     
     static char direction = 'U';
     private Boolean inGame = false;
@@ -193,6 +196,11 @@ public class Game {
     public void setGraphics() {
 
         this.window.setBackground(new Color(244,197,227));
+
+        this.replayButton = new Button("restart game");
+        this.replayButton.onClick(reset());
+        this.replayButton.setCenter(300, 55);
+        this.window.add(replayButton);
 
         this.title = new GraphicsText("Snake!");
         this.title.setFont("Georgia", FontStyle.BOLD, 32);
