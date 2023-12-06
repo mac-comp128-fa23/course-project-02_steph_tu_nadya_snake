@@ -112,12 +112,13 @@ public class Game {
             current.setLocation();
 
             //set this here if you want to change speed of snake movement:
-            window.pause(200);
-        } else {
-            //lose
             window.pause(120);
-            endGame();
-        }
+        } 
+        // else {
+        //     //lose
+        //     window.pause(120);
+        //     endGame();
+        // }
     }
 
     public void endGame() {
