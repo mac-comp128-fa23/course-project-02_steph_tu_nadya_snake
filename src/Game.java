@@ -115,6 +115,8 @@ public class Game {
             window.pause(200);
         } else {
             //lose
+            window.pause(120);
+            endGame();
         }
     }
 
