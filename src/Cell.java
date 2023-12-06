@@ -5,6 +5,7 @@ public class Cell extends Rectangle {
     private int row;
     private int col;
     private Cell next;
+    private Cell previous;
 
     public final Color GRID1 = new Color(248,251,247);
     public final Color GRID2 = new Color(246,238,248);
@@ -38,6 +39,14 @@ public class Cell extends Rectangle {
 
     public void setNext(Cell next) {
         this.next = next;
+    }
+
+    public Cell getPrevious() {
+        return this.previous;
+    }
+
+    public void setPrevious(Cell previous) {
+        this.previous = previous;
     }
 
     public void setLocation() {

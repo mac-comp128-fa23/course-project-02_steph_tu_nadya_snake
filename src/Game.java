@@ -3,10 +3,8 @@ import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.events.Key;
 import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.Image;
-import java.util.LinkedList;
-
 import javax.swing.JOptionPane;
-
+import java.util.LinkedList;
 import java.awt.Color;
 
 public class Game {
@@ -75,7 +73,7 @@ public class Game {
     public void drawSnake(LinkedList<Cell> snakeBody) {
         for (int i = 0; i < snakeBody.size(); i++) {
             Cell cell = snakeBody.get(i);
-            if (i == 0) {
+            if (i == snakeBody.size() - 1) {
                 cell.setFillColor(this.SNAKE_HEAD);
                 cell.setStrokeColor(new Color(199,237,198));
             } else {
@@ -90,12 +88,12 @@ public class Game {
         this.eatFood();
         this.endGame();
         if (this.inGame) {
-            Cell current = this.snake.getHead();
-            Cell next = current.getNext();
-            while (next != null) {
-                current.setPosition(next.getX(), next.getY());
-                current = next;
-                next = current.getNext();
+            Cell current = this.snake.getTail();
+            Cell previous = current.getPrevious();
+            while (previous != null) {
+                current.setPosition(previous.getX(), previous.getY());
+                current = previous;
+                previous = current.getPrevious();
             }
             switch (direction) {
                 case 'U':
@@ -123,7 +121,7 @@ public class Game {
         Cell head = this.snake.getHead();
         
         //  hitting walls
-        boolean hitWalls = head.getX() <= 100 || head.getX() >= 475 || head.getY() <= 125 || head.getY() >= 500;
+        boolean hitWalls = head.getX() < 75 || head.getX() > 500 || head.getY() < 100 || head.getY() > 525;
 
         // snake length is zero
         boolean snakeLengthZero = this.snake.getLength() == 0;
@@ -132,28 +130,6 @@ public class Game {
             this.handleGameOver();
         }
     }
-        // Cell head = this.snake.getHead();
-        // if (head.getX() <= 100 || head.getX() >= 475) {
-        //     this.inGame = false;
-        //     this.window.add(this.losingText);
-        //     this.window.add(this.losingText2);
-        //     this.window.add(this.losingImage);
-        // }
-        // if (head.getY() <= 125 || head.getY() >= 500) {
-        //     this.inGame = false;
-        //     this.window.add(this.losingText);
-        //     this.window.add(this.losingText2);
-        //     this.window.add(this.losingImage);
-        // }
-        // // die
-        // if (this.snake.getLength() == 0) {
-        //     this.inGame = false;
-        //     this.window.add(this.losingText);
-        //     this.window.add(this.losingText2);
-        //     this.window.add(this.losingImage);
-        // }
-    // }
-
 
     private void handleGameOver() {
         // this.window.add(this.losingText);
