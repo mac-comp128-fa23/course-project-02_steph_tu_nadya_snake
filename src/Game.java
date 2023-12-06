@@ -208,7 +208,7 @@ public class Game {
     }
 
     public void run() {
-        SoundHandler.runMusic("res/song.wav");
+        SoundHandler.runMusic("res/ditto.wav");
         this.window.animate(() -> {
             this.snakeMove();
         });
