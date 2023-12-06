@@ -1,5 +1,6 @@
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.GraphicsText;
+import edu.macalester.graphics.Image;
 import edu.macalester.graphics.events.Key;
 import edu.macalester.graphics.FontStyle;
 import java.util.LinkedList;
@@ -22,6 +23,9 @@ public class Game {
     private GraphicsText description;
     private GraphicsText scoreText;
     private GraphicsText losingText;
+    private GraphicsText losingText2;
+
+    private Image losingImage;
     
     static final int SCREEN_HEIGHT = 600;
     static final int SCREEN_WIDTH = 600;
@@ -29,6 +33,7 @@ public class Game {
     static char direction = 'U';
    
     private Boolean inGame = false;
+    private Boolean gameLost = false;
     private int score = 0;
 
     public Game() {
@@ -128,15 +133,21 @@ public class Game {
         if (head.getX() <= 100 || head.getX() >= 475) {
             this.inGame = false;
             window.add(losingText);
+            window.add(losingText2);
+            window.add(losingImage);
         }
         if (head.getY() <= 125 || head.getY() >= 500) {
             this.inGame = false;
             window.add(losingText);
+            window.add(losingText2);
+            window.add(losingImage);
         }
         // die
         if (this.snake.getLength() == 0) {
             this.inGame = false;
             window.add(losingText);
+            window.add(losingText2);
+            window.add(losingImage);
         }
     }
 
@@ -182,7 +193,18 @@ public class Game {
         this.losingText = new GraphicsText("GAME OVER!");
         this.losingText.setFont("Georgia", FontStyle.BOLD, 32);
         this.losingText.setFillColor(new Color(196,186,244));
-        this.losingText.setCenter(300,300);
+        this.losingText.setCenter(300,205);
+
+        this.losingText2 = new GraphicsText("better luck next time lol");
+        this.losingText2.setFont("Georgia", FontStyle.ITALIC, 24);
+        this.losingText2.setFillColor(new Color(196, 186, 244));
+        this.losingText2.setCenter(300, 235);
+
+        this.losingImage = new Image(0, 0);
+        this.losingImage.setMaxHeight(200);
+        this.losingImage.setMaxWidth(200);
+        this.losingImage.setImagePath("cat.png");
+        this.losingImage.setCenter(300, 355);
 
     }
 
