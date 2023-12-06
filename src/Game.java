@@ -1,12 +1,10 @@
 import java.awt.Color;
 import java.util.LinkedList;
-import javax.swing.JOptionPane;
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.events.Key;
-import edu.macalester.graphics.ui.Button;
 
 public class Game {
 
@@ -49,16 +47,15 @@ public class Game {
             if ((event.getKey() == Key.SPACE) && !this.inGame) {
                 this.inGame = true;
                 direction = 'U';
-            } else if ((event.getKey() == Key.UP_ARROW) && (this.inGame) && (direction != 'D')) {
+            } else if ((event.getKey() == Key.UP_ARROW || event.getKey() == Key.W) && (this.inGame) && (direction != 'D')) {
                 direction = 'U';
-            } else if ((event.getKey() == Key.DOWN_ARROW) && (this.inGame) && (direction != 'U')) {
+            } else if ((event.getKey() == Key.DOWN_ARROW || event.getKey() == Key.S) && (this.inGame) && (direction != 'U')) {
                 direction = 'D';
-            } else if ((event.getKey() == Key.LEFT_ARROW) && this.inGame) {
+            } else if ((event.getKey() == Key.LEFT_ARROW || event.getKey() == Key.A) && this.inGame) {
                 direction = 'L';
-            } else if ((event.getKey() == Key.RIGHT_ARROW) && this.inGame) {
+            } else if ((event.getKey() == Key.RIGHT_ARROW || event.getKey() == Key.D) && this.inGame) {
                 direction = 'R';
             }
-            System.out.println("Direction: " + direction);
         });
 
         this.window.onKeyDown(event -> {
@@ -144,15 +141,15 @@ public class Game {
                 snakeHits = true;
                 break;
             } 
-    }
-    if (hitWalls || snakeLengthZero|| snakeHits) {
-        this.window.add(this.losingText);
-        this.window.add(this.losingText2);
-        this.window.add(this.losingImage);
-        this.window.add(this.restartText);
-        this.window.draw();
-        this.inGame = false;
-    }
+        }
+        if (hitWalls || snakeLengthZero|| snakeHits) {
+            this.window.add(this.losingText);
+            this.window.add(this.losingText2);
+            this.window.add(this.losingImage);
+            this.window.add(this.restartText);
+            this.window.draw();
+            this.inGame = false;
+        }
         
     }
 
