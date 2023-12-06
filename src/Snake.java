@@ -28,9 +28,10 @@ public class Snake extends GraphicsGroup{
     }
 
     public void addToTail(){
-        Cell newTail = new Cell(this.tail.getRow() + 1,this.tail.getCol());
-        this.snakeBody.push(newTail);
+        Cell newTail = new Cell(this.tail.getRow(),this.tail.getCol() - 1);
         this.tail.setNext(newTail);
+        this.snakeBody.push(newTail);
+        this.tail = newTail;
     }
 
     public void removeFromTail(){

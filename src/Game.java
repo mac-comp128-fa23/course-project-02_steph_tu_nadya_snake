@@ -140,12 +140,16 @@ public class Game {
     }
 
     public void eatFood() {
-        Cell head = this.snake.getHead();
+        Cell tail = this.snake.getTail();
         Food food = this.board.getFood();
-        if (head.getX() - food.getX() == 0 && head.getY() - food.getY() == 0) {
+        if (tail.getX() - food.getX() == 0 && tail.getY() - food.getY() == 0) {
             this.board.generateFood();
             this.score++;
-            updateScoreText();
+            updateScoreText();    
+            this.snake.addToTail();
+            this.snake.getTail().setFillColor(this.SNAKE_COLOR); 
+            this.snake.getTail().setStrokeColor(new Color(199,237,198));
+            this.window.add(this.snake.getTail());       
         }
     }
 
