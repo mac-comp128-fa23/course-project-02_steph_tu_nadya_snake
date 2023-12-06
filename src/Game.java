@@ -124,10 +124,10 @@ public class Game {
     public void endGame() {
         // hit walls
         Cell head = this.snake.getHead();
-        if (head.getX() < 100 || head.getX() > 475) {
+        if (head.getX() <= 100 || head.getX() >= 475) {
             this.inGame = false;
         }
-        if (head.getY() < 125 || head.getY() > 500) {
+        if (head.getY() <= 125 || head.getY() >= 500) {
             this.inGame = false;
         }
         // die
