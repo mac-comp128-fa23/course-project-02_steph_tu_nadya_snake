@@ -6,6 +6,7 @@ import edu.macalester.graphics.FontStyle;
 import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.Image;
 import edu.macalester.graphics.events.Key;
+import edu.macalester.graphics.ui.Button;
 
 public class Game {
 
@@ -28,6 +29,8 @@ public class Game {
     private GraphicsText losingText;
     private GraphicsText losingText2;
     private Image losingImage;
+
+    private Button replayButton;
     
     static char direction = 'U';
     private Boolean inGame = false;
@@ -127,19 +130,28 @@ public class Game {
         // snake length is zero
         boolean snakeLengthZero = this.snake.getLength() == 0;
 
-        if (hitWalls || snakeLengthZero) {
-            window.add(losingText);
-            window.add(losingText2);
-            window.add(losingImage);
-            window.draw();
-            this.handleGameOver();
-        }
+      // snake hits self
+      boolean snakeHits = false;
+      for(Cell bodyPart: this.snake.getSnakeBody()){
+          if(head!= bodyPart && head.getX() == bodyPart.getX() || head.getY() == bodyPart.getY()){
+              snakeHits = true;
+              break;
+          }
+      }
+      
+      if (hitWalls || snakeLengthZero|| snakeHits) {
+          this.window.add(this.losingText);
+          this.window.add(this.losingText2);
+          this.window.add(this.losingImage);
+          this.window.draw();
+          this.handleGameOver();
+      }
         
     }
 
     private void handleGameOver() {
         this.inGame = false;
-        boolean playAgain = this.showGameOverDialog(score);
+        boolean playAgain = this.showGameOverDialog(this.score);
         if (playAgain) {
             System.out.println("play again");
             this.reset();
@@ -170,7 +182,7 @@ public class Game {
         if (head.getX() - food.getX() == 0 && head.getY() - food.getY() == 0) {
             this.board.generateFood();
             this.score++;
-            updateScoreText();    
+            this.updateScoreText();    
             this.snake.addToTail();
             this.snake.getTail().setFillColor(this.SNAKE_COLOR); 
             this.snake.getTail().setStrokeColor(new Color(199,237,198));
@@ -191,7 +203,7 @@ public class Game {
     }
 
     public void run() {
-        SoundHandler.runMusic("res/ditto.wav");
+        SoundHandler.runMusic("res/down.wav");
         this.window.animate(() -> {
             this.snakeMove();
         });
@@ -204,6 +216,11 @@ public class Game {
     public void setGraphics() {
 
         this.window.setBackground(new Color(244,197,227));
+
+        this.replayButton = new Button("restart game");
+        this.replayButton.onClick(this.reset());
+        this.replayButton.setCenter(300, 55);
+        this.window.add(this.replayButton);
 
         this.title = new GraphicsText("Snake!");
         this.title.setFont("Georgia", FontStyle.BOLD, 32);
