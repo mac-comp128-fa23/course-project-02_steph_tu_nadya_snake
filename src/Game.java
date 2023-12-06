@@ -265,10 +265,7 @@ public class Game {
         this.drawSnake(this.snake.getSnakeBody());
     }
 
-    // public void reset() {
-    //     this.score = 0;
-        
-    // }
+  
 
     public static void main(String[] args) {
         new Game();
