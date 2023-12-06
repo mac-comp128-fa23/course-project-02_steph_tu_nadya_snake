@@ -152,10 +152,8 @@ public class Game {
             this.window.add(this.restartText);
             this.window.draw();
             this.inGame = false;
-        }
-        
+        }      
     }
-
 
     public void reset() {
         this.inGame = false;
@@ -181,9 +179,17 @@ public class Game {
 
     public void hitRock() {
         Cell head = this.snake.getHead();
-        Rock rock = this.board.getRock();
-        if (head.getX() == rock.getX() && head.getY() == rock.getY()) {
-            this.board.generateRock();
+        Rock rock1 = this.board.getRock1();
+        Rock rock2 = this.board.getRock2();
+        if (head.getX() == rock1.getX() && head.getY() == rock1.getY()) {
+            this.board.generateRock1();
+            this.score--;
+            this.updateScoreText();
+            this.window.remove(this.snake.getTail());
+            this.snake.removeFromTail();
+        }
+        if (head.getX() == rock2.getX() && head.getY() == rock2.getY()) {
+            this.board.generateRock2();
             this.score--;
             this.updateScoreText();
             this.window.remove(this.snake.getTail());
@@ -257,7 +263,8 @@ public class Game {
         this.board = new Board();
         this.drawBoard(this.board.getCells());
         this.window.add(this.board.getFood());
-        this.window.add(this.board.getRock());
+        this.window.add(this.board.getRock1());
+        this.window.add(this.board.getRock2());
         this.snake = this.board.getSnake();
         this.drawSnake(this.snake.getSnakeBody());
     }

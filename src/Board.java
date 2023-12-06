@@ -4,7 +4,8 @@ public class Board {
     private Cell[][] cells;
     
     private Food food;
-    private Rock rock;
+    private Rock rock1;
+    private Rock rock2;
     private Snake snake;
 
     public Board() {
@@ -17,8 +18,10 @@ public class Board {
 
         this.food = new Food();
         this.generateFood();
-        this.rock = new Rock();
-        this.generateRock();
+        this.rock1 = new Rock();
+        this.rock2 = new Rock();
+        this.generateRock1();
+        this.generateRock2();
         this.snake = new Snake(this.cells, 3);
     }
 
@@ -30,35 +33,54 @@ public class Board {
         return this.food;
     }
 
-    public Rock getRock() {
-        return this.rock;
+    public Rock getRock1() {
+        return this.rock1;
+    }
+
+    public Rock getRock2() {
+        return this.rock2;
     }
 
     public Snake getSnake() {
         return this.snake;
     }
 
-    public void generateRock(){
-        int row = (int) (Math.random() * this.ROW);
-        int col = (int) (Math.random() * this.COL);
+    public void generateRock1(){
+        int row = (int) (Math.random() * (this.ROW - 1));
+        int col = (int) (Math.random() * (this.COL - 1));
         boolean newRock = false;
         while (!newRock) {
-            if (this.cells[row][col].getType() != "rock") {        
-                this.rock.setCol(col);
-                this.rock.setRow(row);
-                this.rock.setLocation();
-                this.rock.setType("rock");
+            if (row != 0 && col != 0 && this.cells[row][col].getType() != "rock") {        
+                this.rock1.setCol(col);
+                this.rock1.setRow(row);
+                this.rock1.setLocation();
+                this.rock1.setType("rock");
+                newRock = true;
+            }
+        }
+    }
+
+    public void generateRock2(){
+        int row = (int) (Math.random() * (this.ROW - 1));
+        int col = (int) (Math.random() * (this.COL - 1));
+        boolean newRock = false;
+        while (!newRock) {
+            if (row != 0 && col != 0 && this.cells[row][col].getType() != "rock") {        
+                this.rock2.setCol(col);
+                this.rock2.setRow(row);
+                this.rock2.setLocation();
+                this.rock2.setType("rock");
                 newRock = true;
             }
         }
     }
 
     public void generateFood(){
-        int row = (int) (Math.random() * this.ROW);
-        int col = (int) (Math.random() * this.COL);
+        int row = (int) (Math.random() * (this.ROW - 1));
+        int col = (int) (Math.random() * (this.COL - 1));
         boolean newFood = false;
         while (!newFood) {
-            if (this.cells[row][col].getType() != "rock") {
+            if (row != 0 && col != 0 && this.cells[row][col].getType() != "rock") {
                 this.food.setCol(col);
                 this.food.setRow(row);
                 this.food.setLocation();
