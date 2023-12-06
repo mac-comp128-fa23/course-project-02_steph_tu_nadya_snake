@@ -6,7 +6,7 @@ public class Rock extends Cell {
         
     public Rock() {
         super(row, col);
-        this.setFillColor(new Color(0,146,168));
-        this.setStrokeColor(new Color(0,146,168));
+        this.setFillColor(new Color(132,151,133));
+        this.setStrokeColor(new Color(132,151,133));
     }
 }
