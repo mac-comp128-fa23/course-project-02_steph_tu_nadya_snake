@@ -5,7 +5,9 @@
 <img src="https://github.com/mac-comp128-fa23/course-project-02_steph_tu_nadya_snake/assets/118240368/1d461417-8d17-4f70-b5c1-6e8ee1c837f4" width="597" />
 </p>
 
-### __Group Members__: *Stephanie Miles, Tu Tran, and Nadya Konadu*
+***
+
+### Made by Stephanie Miles, Tu Tran, and Nadya Konadu
 
 ## __Product Description__
 
