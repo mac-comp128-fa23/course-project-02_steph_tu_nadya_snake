@@ -1,6 +1,10 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/GqrHw_cP)
 # $${\color{pink}Snake!}$$
 
+<p align = "center">
+<img src="https://github.com/mac-comp128-fa23/course-project-02_steph_tu_nadya_snake/assets/118240368/513c4f9d-e54e-4312-8dce-d2d049cc233c" width="597" />
+</p>
+
 ### __Group Members__: *Stephanie Miles, Tu Tran, and Nadya Konadu*
 
 ## __Product Description__
