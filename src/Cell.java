@@ -1,6 +1,9 @@
 import edu.macalester.graphics.Rectangle;
 import java.awt.Color;
 
+/**
+ * Cell object represented as a row/column pair in the board.
+ */
 public class Cell extends Rectangle {
     private int row;
     private int col;

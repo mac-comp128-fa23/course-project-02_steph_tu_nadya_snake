@@ -1,5 +1,8 @@
 import java.awt.Color;
 
+/**
+ * Creates a food object within a cell object.
+ */
 public class Food extends Cell {
     private static int row;
     private static int col;

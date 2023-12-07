@@ -7,6 +7,9 @@ import edu.macalester.graphics.Image;
 import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.events.Key;
 
+/**
+ * Manages and creates Snake game.
+ */
 public class Game {
 
     static final int SCREEN_HEIGHT = 600;
@@ -77,6 +80,10 @@ public class Game {
         this.run();
     }
 
+    /**
+     * Creates the gameboard within the canvas window.
+     * @param cells the cells to be drawn.
+     */
     public void drawBoard(Cell[][] cells) {
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
@@ -87,6 +94,10 @@ public class Game {
         }
     }
 
+    /**
+     * Draws and adds the snake to the middle of the gameboard and canvas window.
+     * @param snakeBody the linked-stack representation of the snake to be drawn.
+     */
     public void drawSnake(LinkedList<Cell> snakeBody) {
         for (int i = 0; i < snakeBody.size(); i++) {
             Cell cell = snakeBody.get(i);
@@ -101,6 +112,13 @@ public class Game {
         }
     }
 
+    /**
+     * Moves the snake based on the direction given by the keyboard events.
+     * The window pauses every 100 milliseconds to make up for the animate method
+     * going so fast. The snake will only move if the game has been started. The method also 
+     * checks if food has been eaten, a rock has been hit, or the user has lost before actually
+     * moving the snake.
+     */
     public void snakeMove() { 
         this.eatFood();
         this.hitRock();
@@ -134,6 +152,11 @@ public class Game {
         }
     }
 
+    /**
+     * Ends the gameplay if the snake crosses the boundaries, the length of the snake reaches
+     * zero, the score is negative, or the snake hits itself. If this happens, the losing text
+     * will be displayed and inGame is set to false.
+     */
     public void endGame() {
         // hit walls
         Cell head = this.snake.getHead();
@@ -167,6 +190,9 @@ public class Game {
         }      
     }
 
+    /**
+     * Resets the gameboard and important values so that the user can play again
+     */
     public void reset() {
         this.inGame = false;
         this.score = 0;
@@ -175,6 +201,11 @@ public class Game {
         this.setGraphics();
     }
 
+    /**
+     * If the snake's head collides with the food object, new food is generated and the 
+     * score is incremented by 1. The score text is updated and a new segmented is added
+     * to the snake.
+     */
     public void eatFood() {
         Cell head = this.snake.getHead();
         Food food = this.board.getFood();
@@ -189,6 +220,11 @@ public class Game {
         }
     }
 
+    /**
+     * If the snake collides with any of the two rocks drawn on the gameboard,
+     * the snake will lose a segment of its body and the player's score
+     * will decrement by 1. 
+     */
     public void hitRock() {
         Cell head = this.snake.getHead();
         Rock rock1 = this.board.getRock1();
@@ -209,6 +245,10 @@ public class Game {
         }
     }
 
+    /**
+     * Manages the animation of the snake and user interaction as well as creating
+     * and playing the game's music.
+     */
     public void run() {
         SoundHandler.runMusic("res/down.wav");
         this.window.animate(() -> {
@@ -271,6 +311,9 @@ public class Game {
         this.restartText.setCenter(300, 470);
     }
 
+    /**
+     * Adds the board, cells, food, both rocks, and snake to the game window.
+     */
     public void setupBoard() {
         this.board = new Board();
         this.drawBoard(this.board.getCells());

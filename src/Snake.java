@@ -2,6 +2,9 @@ import edu.macalester.graphics.GraphicsGroup;
 import java.util.LinkedList;
 import java.awt.Color;
 
+/**
+ * Snake object represented as a linked stack and visualized within the cells of the board.
+ */
 public class Snake extends GraphicsGroup{
 
     private LinkedList<Cell> snakeBody = new LinkedList<>();

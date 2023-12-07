@@ -7,8 +7,14 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+/**
+ * Handles the audio that is to be played within the Game class.
+ */
 public class SoundHandler {
     
+    /**
+     * Creates a new Audio clip with the given string path and plays it 10 times.
+     */
     public static void runMusic (String s) {
         try {
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(s));
@@ -19,6 +25,7 @@ public class SoundHandler {
             //tell algorithm to open the clip
             clip.open(inputStream);
 
+            //song loops 10 times!
             clip.loop(10);
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
