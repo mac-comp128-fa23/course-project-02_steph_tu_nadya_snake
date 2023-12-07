@@ -30,6 +30,10 @@ public class Snake extends GraphicsGroup{
         }
     }
 
+    /**
+     * Add a new body segment to the tail of the snake. This adds a cell into
+     * the linked-stack using the push operation.
+     */
     public void addToTail(){
         Cell newTail = new Cell(this.tail.getRow(),this.tail.getCol() - 1);
         newTail.setPrevious(this.tail);
@@ -37,6 +41,10 @@ public class Snake extends GraphicsGroup{
         this.tail = newTail;
     }
 
+    /**
+     * Removes a body segment off the tail of the snake. This removes the top of the
+     * linked-stack using the pop operation.
+     */
     public void removeFromTail(){
         if (this.snakeBody.size() >= 1) {
             this.tail = this.tail.getPrevious();

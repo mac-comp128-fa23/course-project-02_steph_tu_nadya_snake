@@ -260,6 +260,9 @@ public class Game {
         this.scoreText.setText("Score: " + Integer.toString(this.score));
     }
 
+    /**
+     * Sets up game UI
+     */
     public void setGraphics() {
 
         this.window.setBackground(new Color(244,197,227));

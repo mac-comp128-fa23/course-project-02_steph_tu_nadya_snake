@@ -1,5 +1,6 @@
-import edu.macalester.graphics.Rectangle;
 import java.awt.Color;
+
+import edu.macalester.graphics.Rectangle;
 
 /**
  * Cell object represented as a row/column pair in the board.
@@ -18,6 +19,26 @@ public class Cell extends Rectangle {
 
         this.row = row;
         this.col = col;
+    }
+
+    /**
+     * Sets location of the board.
+     */
+    public void setLocation() {
+        this.setPosition(50 + 25 * this.row, 75 + 25 * this.col);
+    }
+
+    /**
+     * Resets the cell to its original state.
+     */
+    public void resetCell() {
+        if ((this.row + this.col) % 2 == 0) {
+            this.setFillColor(GRID1);
+            this.setStrokeColor(Color.WHITE);
+        } else {
+            this.setFillColor(GRID2);
+            this.setStrokeColor(Color.WHITE);
+        }
     }
 
     public int getRow() {
@@ -50,19 +71,5 @@ public class Cell extends Rectangle {
 
     public void setPrevious(Cell previous) {
         this.previous = previous;
-    }
-
-    public void setLocation() {
-        this.setPosition(50 + 25 * this.row, 75 + 25 * this.col);
-    }
-
-    public void resetCell() {
-        if ((this.row + this.col) % 2 == 0) {
-            this.setFillColor(GRID1);
-            this.setStrokeColor(Color.WHITE);
-        } else {
-            this.setFillColor(GRID2);
-            this.setStrokeColor(Color.WHITE);
-        }
     }
 }
