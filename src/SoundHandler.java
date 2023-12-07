@@ -14,6 +14,7 @@ public class SoundHandler {
     
     /**
      * Creates a new Audio clip with the given string path and plays it 10 times.
+     * @param s file path as a string object
      */
     public static void runMusic (String s) {
         try {

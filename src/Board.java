@@ -1,3 +1,7 @@
+
+/**
+ * Representation of Snake's gameboard.
+ */
 public class Board {
     final int ROW = 20;
     final int COL = 20;
@@ -8,9 +12,6 @@ public class Board {
     private Rock rock2;
     private Snake snake;
 
-    /**
-     * Representation of Snake's gameboard.
-     */
     public Board() {
         this.cells = new Cell[this.ROW][this.COL]; 
         for (int i = 0; i < this.cells.length; i++) {
