@@ -33,6 +33,7 @@ public class Board {
      * Generates a rock cell type in a random spot on the board.
      */
     public void generateRock1(){
+        this.cells[this.rock1.getRow()][this.rock1.getCol()].setType("");
         int row = (int) (Math.random() * (this.ROW - 1));
         int col = (int) (Math.random() * (this.COL - 1));
         boolean newRock = false;
@@ -51,6 +52,7 @@ public class Board {
      * Generates a second rock cell type in a random spot on the board.
      */
     public void generateRock2(){
+        this.cells[this.rock2.getRow()][this.rock2.getCol()].setType("");
         int row = (int) (Math.random() * (this.ROW - 1));
         int col = (int) (Math.random() * (this.COL - 1));
         boolean newRock = false;
@@ -69,6 +71,7 @@ public class Board {
      * Generates a food cell type in a random spot on the board.
      */
     public void generateFood(){
+        this.cells[this.food.getRow()][this.food.getCol()].setType("");
         int row = (int) (Math.random() * (this.ROW - 1));
         int col = (int) (Math.random() * (this.COL - 1));
         boolean newFood = false;
