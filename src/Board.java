@@ -38,7 +38,7 @@ public class Board {
         int col = (int) (Math.random() * (this.COL - 1));
         boolean newRock = false;
         while (!newRock) {
-            if (row != 0 && col != 0 && this.cells[row][col].getType() != "rock") {        
+            if (row != 0 && col != 0 && this.cells[row][col].getType() != "rock" && this.cells[row][col].getType() != "food") {        
                 this.rock1.setCol(col);
                 this.rock1.setRow(row);
                 this.rock1.setLocation();
@@ -57,7 +57,7 @@ public class Board {
         int col = (int) (Math.random() * (this.COL - 1));
         boolean newRock = false;
         while (!newRock) {
-            if (row != 0 && col != 0 && this.cells[row][col].getType() != "rock") {        
+            if (row != 0 && col != 0 && this.cells[row][col].getType() != "rock" && this.cells[row][col].getType() != "food") {        
                 this.rock2.setCol(col);
                 this.rock2.setRow(row);
                 this.rock2.setLocation();
