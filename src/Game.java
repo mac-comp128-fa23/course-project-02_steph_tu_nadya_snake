@@ -46,8 +46,6 @@ public class Game {
 
         this.setupBoard();
         this.setGraphics();
-        this.run();
-
 
         //key events
         this.window.onKeyDown(event -> {
@@ -55,19 +53,19 @@ public class Game {
                 this.inGame = true;
                 direction = 'U';
 
-            } else if ((event.getKey() == Key.UP_ARROW) 
+            } else if ((event.getKey() == Key.UP_ARROW || event.getKey() == Key.W) 
             && (this.inGame) && (direction != 'D')) {
                 direction = 'U';
 
-            } else if ((event.getKey() == Key.DOWN_ARROW) 
+            } else if ((event.getKey() == Key.DOWN_ARROW || event.getKey() == Key.S) 
             && (this.inGame) && (direction != 'U')) {
                 direction = 'D';
 
-            } else if ((event.getKey() == Key.LEFT_ARROW) 
+            } else if ((event.getKey() == Key.LEFT_ARROW || event.getKey() == Key.A) 
             && this.inGame) {
                 direction = 'L';
 
-            } else if ((event.getKey() == Key.RIGHT_ARROW) 
+            } else if ((event.getKey() == Key.RIGHT_ARROW || event.getKey() == Key.D) 
             && this.inGame) {
                 direction = 'R';
             }
@@ -79,6 +77,7 @@ public class Game {
             }
         });
 
+        this.run();
     }
 
     /**
@@ -121,10 +120,10 @@ public class Game {
      * moving the snake.
      */
     public void snakeMove() { 
+        this.eatFood();
+        this.hitRock();
+        this.endGame();
         if (this.inGame) {
-            this.eatFood();
-            this.hitRock();
-            this.endGame();
             Cell current = this.snake.getTail();
             Cell previous = current.getPrevious();
             while (previous != null) {
