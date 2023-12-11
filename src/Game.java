@@ -121,8 +121,11 @@ public class Game {
      */
     public void snakeMove() { 
         this.eatFood();
+        System.out.println("food");
         this.hitRock();
+        System.out.println("rock");
         this.endGame();
+        System.out.println("end");
         if (this.inGame) {
             Cell current = this.snake.getTail();
             Cell previous = current.getPrevious();
@@ -131,6 +134,7 @@ public class Game {
                 current = previous;
                 previous = current.getPrevious();
             }
+            System.out.println("switch");
             switch (direction) {
                 case 'U':
                     current.setCol(current.getCol() - 1);
