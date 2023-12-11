@@ -120,6 +120,7 @@ public class Game {
      * moving the snake.
      */
     public void snakeMove() { 
+        System.out.println("before");
         this.eatFood();
         System.out.println("food");
         this.hitRock();
@@ -150,9 +151,10 @@ public class Game {
                     break;    
             }
             current.setLocation();
-
+            System.out.println("after");
             //set this here if you want to change speed of snake movement:
             this.window.pause(100);
+            System.out.println("pause");
         }
     }
 
