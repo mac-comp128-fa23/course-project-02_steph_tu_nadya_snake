@@ -1,4 +1,5 @@
-import javax.swing.plaf.synth.SynthSplitPaneUI;
+import edu.macalester.graphics.CanvasWindow;
+
 
 /**
  * Representation of Snake's gameboard.
@@ -13,7 +14,7 @@ public class Board {
     private Rock rock2;
     private Snake snake;
 
-    public Board() {
+    public Board(CanvasWindow canvas) {
         this.cells = new Cell[this.ROW][this.COL]; 
         for (int i = 0; i < this.cells.length; i++) {
             for (int j = 0; j < this.cells[i].length; j++) {

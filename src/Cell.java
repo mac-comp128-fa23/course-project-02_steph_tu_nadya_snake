@@ -1,6 +1,9 @@
+import edu.macalester.graphics.Image;
 import java.awt.Color;
 
 import edu.macalester.graphics.Rectangle;
+
+import java.awt.Canvas;
 
 /**
  * Cell object represented as a row/column pair in the board.
@@ -10,6 +13,7 @@ public class Cell extends Rectangle {
     private int col;
     private String type;
     private Cell previous;
+    private Image backgroundImage;
 
     public final Color GRID1 = new Color(248,251,247);
     public final Color GRID2 = new Color(246,238,248);
@@ -33,10 +37,10 @@ public class Cell extends Rectangle {
      */
     public void resetCell() {
         if ((this.row + this.col) % 2 == 0) {
-            this.setFillColor(GRID1);
+            this.setFillColor(this.GRID1);
             this.setStrokeColor(Color.WHITE);
         } else {
-            this.setFillColor(GRID2);
+            this.setFillColor(this.GRID2);
             this.setStrokeColor(Color.WHITE);
         }
     }
@@ -72,4 +76,8 @@ public class Cell extends Rectangle {
     public void setPrevious(Cell previous) {
         this.previous = previous;
     }
+
+  
+
+
 }

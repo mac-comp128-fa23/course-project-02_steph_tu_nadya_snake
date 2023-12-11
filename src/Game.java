@@ -30,10 +30,11 @@ public class Game {
     private GraphicsText scoreText;
     private GraphicsText losingText;
     private GraphicsText losingText2;
-    private GraphicsText restartText;
-
     private Image losingImage;
+    private Image snakeImage;
+    private Image rockImage;
 
+    private GraphicsText restartText;
     private Rectangle losingRectangle;
 
     static char direction = 'U';
@@ -317,7 +318,7 @@ public class Game {
      * Adds the board, cells, food, both rocks, and snake to the game window.
      */
     public void setupBoard() {
-        this.board = new Board();
+        this.board = new Board(this.window);
         this.drawBoard(this.board.getCells());
         this.window.add(this.board.getFood());
         this.window.add(this.board.getRock1());
