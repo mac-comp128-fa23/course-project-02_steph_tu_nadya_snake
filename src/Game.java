@@ -120,13 +120,9 @@ public class Game {
      * moving the snake.
      */
     public void snakeMove() { 
-        System.out.println("before");
         this.eatFood();
-        System.out.println("food");
         this.hitRock();
-        System.out.println("rock");
         this.endGame();
-        System.out.println("end");
         if (this.inGame) {
             Cell current = this.snake.getTail();
             Cell previous = current.getPrevious();
@@ -135,7 +131,6 @@ public class Game {
                 current = previous;
                 previous = current.getPrevious();
             }
-            System.out.println("switch");
             switch (direction) {
                 case 'U':
                     current.setCol(current.getCol() - 1);
@@ -151,10 +146,8 @@ public class Game {
                     break;    
             }
             current.setLocation();
-            System.out.println("after");
             //set this here if you want to change speed of snake movement:
             this.window.pause(100);
-            System.out.println("pause");
         }
     }
 

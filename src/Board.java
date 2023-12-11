@@ -1,3 +1,4 @@
+import javax.swing.plaf.synth.SynthSplitPaneUI;
 
 /**
  * Representation of Snake's gameboard.
@@ -38,7 +39,9 @@ public class Board {
         int col = (int) (Math.random() * (this.COL - 1));
         boolean newRock = false;
         while (!newRock) {
-            if (row != 0 && col != 0 && row != this.ROW - 1 && col != this.COL - 1 && row != this.rock2.getRow() && col != this.rock2.getCol() && this.cells[row][col].getType() != "rock" && this.cells[row][col].getType() != "food") {        
+            row = (int) (Math.random() * (this.ROW - 1));
+            col = (int) (Math.random() * (this.COL - 1));
+            if (row != 0 && col != 0 && row != this.rock2.getRow() && col != this.rock2.getCol() && this.cells[row][col].getType() != "rock" && this.cells[row][col].getType() != "food") {        
                 this.rock1.setCol(col);
                 this.rock1.setRow(row);
                 this.rock1.setLocation();
@@ -57,7 +60,9 @@ public class Board {
         int col = (int) (Math.random() * (this.COL - 1));
         boolean newRock = false;
         while (!newRock) {
-            if (row != 0 && col != 0 && row != this.ROW - 1 && col != this.COL - 1 && row != this.rock1.getRow() && col != this.rock1.getCol() && this.cells[row][col].getType() != "rock" && this.cells[row][col].getType() != "food") {        
+            row = (int) (Math.random() * (this.ROW - 1));
+            col = (int) (Math.random() * (this.COL - 1));
+            if (row != 0 && col != 0 && row != this.rock1.getRow() && col != this.rock1.getCol() && this.cells[row][col].getType() != "rock" && this.cells[row][col].getType() != "food") {        
                 this.rock2.setCol(col);
                 this.rock2.setRow(row);
                 this.rock2.setLocation();
@@ -76,7 +81,9 @@ public class Board {
         int col = (int) (Math.random() * (this.COL - 1));
         boolean newFood = false;
         while (!newFood) {
-            if (row != 0 && col != 0 && row != this.ROW - 1 && col != this.COL - 1 && this.cells[row][col].getType() != "rock") {
+            row = (int) (Math.random() * (this.ROW - 1));
+            col = (int) (Math.random() * (this.COL - 1));
+            if (row != 0 && col != 0 && this.cells[row][col].getType() != "rock") {
                 this.food.setCol(col);
                 this.food.setRow(row);
                 this.food.setLocation();
