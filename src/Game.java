@@ -235,6 +235,7 @@ public class Game {
             this.updateScoreText();
             this.window.remove(this.snake.getTail());
             this.snake.removeFromTail();
+            this.board.generateFood();
         }
         if (head.getX() == rock2.getX() && head.getY() == rock2.getY()) {
             this.board.generateRock2();
@@ -242,6 +243,7 @@ public class Game {
             this.updateScoreText();
             this.window.remove(this.snake.getTail());
             this.snake.removeFromTail();
+            this.board.generateFood();
         }
     }
 
