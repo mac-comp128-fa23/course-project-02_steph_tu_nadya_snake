@@ -1,4 +1,4 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/GqrHw_cP)
+
 # $${\color{pink}Snake!}$$
 
 <p align = "center">
@@ -48,6 +48,8 @@ __How to play the game:__
 > Because there are so many things going on within the program, the window will sometimes freeze on macs after a few games are played (or if the snake gets super long).
 
 ## __Societal Impact:__
+
+There are clear accessibility issues present in our program. The game heavily relies on the user being able to press the arrow, shift, and spacebar keys, so users that do not have the ability to use a keyboard will experience significant barriers when attempting to play our game. Similarly, the game contains no audio component and is entirely visual, besides the gameplay music (that has no effect on the actual game itself), so the visually impaired will also have difficulties playing this game. The game also relies on the player being able to see distinctions between colors, so someone who is color blind may experience some limitations when playing the game. If a user is color blind, it may be very hard to distinguish between the board, food, and snake as the only things that differentiates them is their cell color. 
 
 ## __Goals:__
 
