@@ -1,6 +1,5 @@
 import edu.macalester.graphics.CanvasWindow;
 
-
 /**
  * Representation of Snake's gameboard.
  */

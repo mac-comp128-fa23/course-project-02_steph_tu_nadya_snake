@@ -1,9 +1,6 @@
-import edu.macalester.graphics.Image;
 import java.awt.Color;
 
 import edu.macalester.graphics.Rectangle;
-
-import java.awt.Canvas;
 
 /**
  * Cell object represented as a row/column pair in the board.
@@ -13,7 +10,6 @@ public class Cell extends Rectangle {
     private int col;
     private String type;
     private Cell previous;
-    private Image backgroundImage;
 
     public final Color GRID1 = new Color(248,251,247);
     public final Color GRID2 = new Color(246,238,248);

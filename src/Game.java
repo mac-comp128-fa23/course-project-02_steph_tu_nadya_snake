@@ -31,8 +31,6 @@ public class Game {
     private GraphicsText losingText;
     private GraphicsText losingText2;
     private Image losingImage;
-    private Image snakeImage;
-    private Image rockImage;
 
     private GraphicsText restartText;
     private Rectangle losingRectangle;
