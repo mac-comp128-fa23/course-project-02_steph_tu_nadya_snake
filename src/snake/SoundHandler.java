@@ -1,3 +1,7 @@
+package snake;
+
+//Authors: Steph Miles, Tu Tran, Nadya Konadu
+
 import java.io.File;
 import java.io.IOException;
 

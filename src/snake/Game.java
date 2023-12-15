@@ -1,3 +1,7 @@
+package snake;
+
+//Authors: Steph Miles, Tu Tran, Nadya Konadu
+
 import java.awt.Color;
 import java.util.LinkedList;
 import edu.macalester.graphics.CanvasWindow;

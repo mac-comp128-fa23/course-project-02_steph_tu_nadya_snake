@@ -1,3 +1,4 @@
+package snake;
 import edu.macalester.graphics.CanvasWindow;
 
 /**
